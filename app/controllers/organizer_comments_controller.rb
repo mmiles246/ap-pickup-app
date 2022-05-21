@@ -1,0 +1,2 @@
+class OrganizerCommentsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class TownEventsController < ApplicationController
+end

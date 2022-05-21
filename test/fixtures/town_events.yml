@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type_of: MyString
+  start_time: 2022-05-20 12:19:58
+  end_time: 2022-05-20 12:19:58
+  location: MyString
+  event_description: MyString
+  sponsors: MyString
+  organizer: one
+
+two:
+  name: MyString
+  type_of: MyString
+  start_time: 2022-05-20 12:19:58
+  end_time: 2022-05-20 12:19:58
+  location: MyString
+  event_description: MyString
+  sponsors: MyString
+  organizer: two
