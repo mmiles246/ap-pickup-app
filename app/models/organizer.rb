@@ -7,7 +7,7 @@ class Organizer < ApplicationRecord
     has_many :organizer_comments
     has_many :event_comments, through: :organizer_comments, source: :town_event
 
-    validates :email, uniquness: true
+    validates :email, uniqueness: true
     validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
     validates :email, :first_name, :last_name, :about, presence: true
 
