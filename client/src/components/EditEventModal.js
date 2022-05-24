@@ -23,7 +23,7 @@ function EditEventModal ({show, handleClose, eventToEdit}) {
 
     function deleteEventClick (e) {
         console.log(e)
-        fetch('/delete_event', {
+        fetch(`/my_event/${eventToEdit.id}`, {
             method: 'DELETE',
             credentials: 'include'
         })

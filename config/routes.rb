@@ -34,6 +34,6 @@ Rails.application.routes.draw do
 
   delete '/my_event/:event_id', to: 'town_events#delete'
 
-  delete 'event_rsvp/:event_id', to: 'signups#delete'
+  delete 'event_rsvp/:town_event_id', to: 'signups#delete'
   
 end

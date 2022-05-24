@@ -66,7 +66,8 @@ console.log(handleRsvp)
         })
       })
       alert("Succsessfully RSVP'd!")
-      navigate('/upcoming')
+      setShow(false)
+      // navigate('/upcoming')
     }
 
     function handleInfoClick (e) {
@@ -79,6 +80,10 @@ console.log(handleRsvp)
       fetch(`/event_rsvp/${selectedEvent.id}`, {
         method: 'DELETE'
       })
+      handleRsvp.pop()
+      alert("Succsessfully canceled RSVP")
+      setShow(false)
+      navigate('/upcoming')
     }
 
 

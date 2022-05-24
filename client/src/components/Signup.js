@@ -33,6 +33,13 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
         });
     }
 
+    function handleSelectChange (e) {
+        setSignupInfo({
+            ...signupInfo,
+            
+        })
+    }
+
     function handleCheckboxClick (e) {
         setCheckedState(!checkedState)
         setSignupInfo({
@@ -120,7 +127,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
 
                     <br></br>
 
-                    <Select isMulti options={options} value={signupInfo.interested_in} />
+                    <Select isMulti name='interested_in' options={options} onChange={handleInputChange} value={signupInfo.interested_in} />
 
                     <span>Would you like to recieve emails about new events in the area?</span>
 
@@ -128,6 +135,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
                     <label htmlFor='newsletter'>Newsletter:</label>
                     <input
                     id='newsletter'
+                    name='newsletter'
                     type='checkbox'
                     value={signupInfo.newsletter}
                     ></input>
