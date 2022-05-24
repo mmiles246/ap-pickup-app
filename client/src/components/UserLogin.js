@@ -13,23 +13,14 @@ function UserLogin ({setCurrentUser, currentUser}) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/png'
+                // 'Accept': 'application/png'
             },
             body: JSON.stringify({email, password})
         })
         .then(res=> {
             if (res.ok) {
                 res.json().then(user=> {
-                    setCurrentUser({...currentUser,
-                        id: user.user.id,
-                        first_name: user.user.first_name,
-                        last_name: user.user.last_name,
-                        email: user.user.email,
-                        password_digest: user.user.password_digest,
-                        about: user.user.about,
-                        newsletter: user.user.newsletter,
-                        profile_img: user.profile_img
-                    })
+                    setCurrentUser(user)
                     navigate('/')
                 })
             } else {
@@ -72,3 +63,15 @@ function UserLogin ({setCurrentUser, currentUser}) {
 }
 
 export default UserLogin;
+
+
+
+// {...currentUser,
+//                         first_name: user.user.first_name,
+//                         last_name: user.user.last_name,
+//                         email: user.user.email,
+//                         password_digest: user.user.password_digest,
+//                         about: user.user.about,
+//                         newsletter: user.user.newsletter,
+//                         profile_img: user.profile_img
+//                     }

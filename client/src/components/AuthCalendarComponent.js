@@ -33,17 +33,27 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     const [fetchedEvents, setFetchedEvents] = useState([]);
     const [eventInfoToPass, setEventInfoToPass]=useState([])
 
+    const navigate = useNavigate()
+
     const [selectedEvent, setSelectedEvent] = useState(undefined);
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    // const handleClose = () => setShow(false);
 
-    const navigate = useNavigate()
+    function handleClose (e) {
+        setShow(false)
+        navigate('/upcoming')
+
+    }
+
+    
 
     function handleShow (e) {
-        console.log(e)
+
         setSelectedEvent(e)
         setShow(true)
+        console.log(selectedEvent.id)
+        navigate(`/upcoming/${selectedEvent.id}`)
     }
 
     function handleSelectEvent (e) {
@@ -66,6 +76,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     type_of: eachEvent.type_of,
                     location: eachEvent.location,
                     id: eachEvent.id
+                    
                 }
             })
             )

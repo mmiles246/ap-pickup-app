@@ -13,13 +13,13 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
     const handleClose = () => setShow(false);
 
-    console.log(currentOrganizer)
+    // console.log(currentOrganizer)
 
     useEffect(()=>{
         fetch('/town_event_page')
         .then(res=>res.json())
         .then((res)=> {
-            console.log(res)
+            // console.log(res)
             setEventPageInfo(res.town_events)
         })
     }, [])

@@ -2,7 +2,7 @@ import {Link, Outlet} from 'react-router-dom'
 import LogoutBttn from './LogoutBttn';
 
 function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrganizer}) {
-    console.log(currentOrganizer)
+    // console.log(currentOrganizer)
     // console.log(currentOrganizer.profile_img)
     console.log(currentUser)
     return(<div className="navbar">

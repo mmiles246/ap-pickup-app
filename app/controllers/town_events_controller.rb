@@ -30,6 +30,14 @@ class TownEventsController < ApplicationController
         end
     end
 
+    def update
+        # byebug
+        event_to_update=TownEvent.find_by(id: params[:event_id])
+        byebug
+        event_to_update.update(town_event_params)
+        render json: event_to_update, status: :ok, serializer: EditEventSerializerSerializer
+    end
+
     private 
 
     def town_event_params

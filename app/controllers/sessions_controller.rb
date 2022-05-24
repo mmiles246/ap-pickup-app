@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
         # byebug
             if user&.authenticate(params[:password])
                 session[:user_id] =user.id
-                profile_img=rails_blob_path(user.profile_img)
+                # profile_img=rails_blob_path(user.profile_img)
 
-                render json: {user: user, profile_img: profile_img}, status: :ok
+                # render json: {user: user, profile_img: profile_img}, status: :ok
+                render json: user, status: :ok
             else 
                 render json: {error: "Invalid email or password."}, status: :unauthorized
             end

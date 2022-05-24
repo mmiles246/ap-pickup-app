@@ -24,7 +24,11 @@ Rails.application.routes.draw do
 
   post '/organize_event', to: 'town_events#create'
 
+  post '/event_rsvp', to: 'signups#create'
+  
   post 'event_rsvp', to: 'signups#create'
+
+  put '/organize_event/:event_id', to: 'town_events#update'
 
   delete '/logout', to: 'sessions#delete'
 

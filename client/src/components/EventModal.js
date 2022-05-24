@@ -12,20 +12,22 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
 
     const eventArray = []
 
-    console.log()
+    // console.log(selectedEvent)
 
     eventInfoToPass.forEach(town_event => {
-      if (town_event.name === selectedEvent.title) {
+      if (town_event.id === selectedEvent.id) {
         eventArray.push(town_event)
       } 
     });
-    console.log(eventArray)
-    console.log(eventArray[0].signups)
+    
+    // console.log(eventArray[0].signups)
 
+    const townEventSignups=eventArray[0].signups
+    console.log(townEventSignups)
 
       const handleRsvp =[0]
     const eventSignups = [{
-      id:1000,
+      id:1,
       user_id: 1, 
       town_event_id: eventArray[0].id 
     }]
@@ -40,20 +42,20 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
   //  eventSignups.push(eventArray[0].signups[0])
 
     // console.log(eventSignups)
-    eventSignups.forEach(signup => {
+    townEventSignups.forEach(signup => {
       if (signup.user_id === currentUser.id) {
         handleRsvp.push(signup.user_id)
       } 
     })
-    console.log(selectedEvent)
+    // console.log(selectedEvent)
     // console.log(handleRsvp.includes(currentUser.id))
 
-
+console.log(handleRsvp)
 
 
     function handleRsvpClick (e) {
       console.log(e)
-      fetch('./event_rsvp', {
+      fetch('/event_rsvp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -64,27 +66,20 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
         })
       })
       alert("Succsessfully RSVP'd!")
+      navigate('/upcoming')
     }
 
     function handleInfoClick (e) {
-      console.log(e)
+      
       navigate('/upcoming/more-info', {state:{...eventArray[0]}})
     }
 
     function handleCancelRsvpClick (e) {
       console.log(e)
-      fetch(`/event_rsvp`, {
+      fetch(`/event_rsvp/${selectedEvent.id}`, {
         method: 'DELETE'
       })
     }
-
-    // {
-    //   if (currentUser.signup.town_event_id === eventArray[0].id) {
-    //     <Button variant="primary" onClick={handleRsvpClick}>change RSVP</Button>
-    //   } else {
-    //     <Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>
-    //   }
-    // }
 
 
     return (
@@ -100,20 +95,15 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
             <Button variant="secondary" onClick={handleInfoClick}>
               See more info here!
             </Button>
-            
             {
                handleRsvp.includes(currentUser.id)
-              // (currentUser && currentUser.id === handleRsvp[1].user_id) 
-              // (eventSignups[0].user_id&& === currentUser.id)
                ?
                 (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
               :
                 (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
-              
             }
-            {/* <Button variant="primary" onClick={handleRsvpClick}>
-              RSVP
-            </Button> */}
+
+
           </Modal.Footer>
         </Modal>
     </div>
@@ -121,3 +111,25 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
     }
 
 export default EventModal;
+
+
+              //  handleRsvp.includes(currentUser.id)
+              // // (currentUser && currentUser.id === handleRsvp[1].user_id) 
+              // // (eventSignups[0].user_id&& === currentUser.id)
+              //  ?
+              //   (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
+              // :
+              //   (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
+                          {/* <Button variant="primary" onClick={handleRsvpClick}>
+              RSVP
+            </Button> */}
+
+
+
+
+                         // townEventSignups.forEach((signup)=> {
+              //   if (signup.user_id === currentUser.id) {
+              //     (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
+
+              //   } else {(<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)}
+              // }) 
