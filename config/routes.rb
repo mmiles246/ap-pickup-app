@@ -10,10 +10,26 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
 
+  get '/town_events', to: 'town_events#index'
+
+  get '/town_event_page', to: 'organizers#show'
+
+  post '/signup', to: 'users#create'
+
   post '/user_login', to: 'sessions#create'
 
   post '/organizer_login', to: 'sessions#organizer_create'
 
+  post 'event_rsvp', to: 'signups#create'
+
+  post '/organize_event', to: 'town_events#create'
+
+  post 'event_rsvp', to: 'signups#create'
+
   delete '/logout', to: 'sessions#delete'
+
+  delete '/my_event/:event_id', to: 'town_events#delete'
+
+  delete 'event_rsvp/:event_id', to: 'signups#delete'
   
 end

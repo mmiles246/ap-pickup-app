@@ -2,7 +2,9 @@ import {Link, Outlet} from 'react-router-dom'
 import LogoutBttn from './LogoutBttn';
 
 function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrganizer}) {
-
+    console.log(currentOrganizer)
+    // console.log(currentOrganizer.profile_img)
+    console.log(currentUser)
     return(<div className="navbar">
         <nav>
                 <ul className="primary-navigation">
@@ -24,15 +26,15 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
                         <span>Contact Us</span>
                         </Link>
                     </li>
-                    {currentUser||currentOrganizer ? (<li>
+                    {currentUser||currentOrganizer ? (<></>)
+                    :
+                    (<li>
                         <div id='signup-bttn'>
                             <Link to='/login'>
                                 <span>Login</span>
                             </Link>
                         </div>
-                    </li>)
-                    :
-                    (<></>)}
+                    </li>)}
                     {currentUser||currentOrganizer ? (<li><LogoutBttn setCurrentUser={setCurrentUser} setCurrentOrganizer={setCurrentOrganizer}/></li>)
                     :
                     (<li></li>)}
@@ -44,3 +46,5 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
 }
 
 export default NavBar;
+
+

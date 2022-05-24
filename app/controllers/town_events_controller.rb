@@ -10,11 +10,25 @@ class TownEventsController < ApplicationController
         render json: town_event, status: :found
     end
 
-    def create
-        new_town_event=TownEvent.create(town_event_params)
-        render json: new_town_event, status: :created 
-    end
+    # def create
+    #     new_town_event=TownEvent.create(town_event_params)
+    #     render json: new_town_event, status: :created 
+    # end
 
+    def create
+
+        new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
+        
+        if logged_in_organizer
+            new_town_event=logged_in_organizer.town_events.create(town_event_params)
+
+            if new_town_event.valid?
+                render json: new_town_event
+            else
+                new_town_event.errors.full_messages
+            end
+        end
+    end
 
     private 
 

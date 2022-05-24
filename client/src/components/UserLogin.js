@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 
-function UserLogin ({setCurrentUser}) {
+function UserLogin ({setCurrentUser, currentUser}) {
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
 
@@ -12,14 +12,24 @@ function UserLogin ({setCurrentUser}) {
         fetch ('/user_login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/png'
             },
             body: JSON.stringify({email, password})
         })
         .then(res=> {
             if (res.ok) {
                 res.json().then(user=> {
-                    setCurrentUser(user)
+                    setCurrentUser({...currentUser,
+                        id: user.user.id,
+                        first_name: user.user.first_name,
+                        last_name: user.user.last_name,
+                        email: user.user.email,
+                        password_digest: user.user.password_digest,
+                        about: user.user.about,
+                        newsletter: user.user.newsletter,
+                        profile_img: user.profile_img
+                    })
                     navigate('/')
                 })
             } else {
@@ -54,6 +64,7 @@ function UserLogin ({setCurrentUser}) {
                 </input>
                 <button type='submit'>Submit</button>
             </form>
+            <p>New user? Singup <Link to='/signup'>here</Link></p>
             <p>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
 
     </div>)

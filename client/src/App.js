@@ -35,7 +35,7 @@ function App() {
       <BrowserRouter>
         {currentUser||currentOrganizer ? (<AuthenticatedApp currentUser={currentUser} setCurrentUser={setCurrentUser} setCurrentOrganizer={setCurrentOrganizer} currentOrganizer={currentOrganizer} />)
         :
-        (<UnAuthenticatedApp setCurrentUser={setCurrentUser} setCurrentOrganizer={setCurrentOrganizer} />)
+        (<UnAuthenticatedApp setCurrentUser={setCurrentUser} setCurrentOrganizer={setCurrentOrganizer} currentUser={currentUser} />)
         }
       </BrowserRouter>
     )

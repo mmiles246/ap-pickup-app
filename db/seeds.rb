@@ -54,7 +54,7 @@ tillie.profile_img.attach(
     content_type: 'application/png'
 )
 
-User.create(first_name: "Stone",  
+user=User.create(first_name: "Stone",  
 last_name: "Pony", 
 email: "summerstage22@yahoo.com", 
 password: "password",
@@ -62,6 +62,8 @@ about: "Dark Horse",
 interested_in: ["sports"],
 newsletter: true
 )
+
+
 
 #events
 puts "Seeding townEvents..."
