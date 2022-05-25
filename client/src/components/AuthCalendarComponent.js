@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { ca } from "date-fns/locale";
 import EventModal from "./EventModal";
+import OrganizerEventModal from "./OrganizerEventModal";
 import { set } from "date-fns";
 
 
@@ -52,7 +53,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
 
         setSelectedEvent(e)
         setShow(true)
-        console.log(selectedEvent.id)
+        // console.log(selectedEvent.id)
         navigate(`/upcoming/${selectedEvent.id}`)
     }
 
@@ -96,9 +97,6 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     :
                     (null)
                     }
-                    
-                    {/* <div>{organizerEvents.map(organizerEventMapper)}</div> */}
-                    
                 </Col>
                 <Col xs={9}>
                     <Calendar 
@@ -115,13 +113,14 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     }} />
                 </Col>
             </Row>
-            {/* {show ? navigate(`/upcoming/${selectedEvent.id}`,{state:{handleShow, handleClose, selectedEvent}} )
-            :
-            (<></>)
-            } */}
-            {show ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} />)
+            {(currentUser && show) ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} />)
             :
             <></>}
+
+            {(currentOrganizer && show) ? (<OrganizerEventModal show={show} setShow={setShow} handleClose={handleClose} />)
+            :
+            (<></>)
+            }
         </div>
     )
 

@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+
 import {Modal, Button} from 'react-bootstrap'
 
 
 function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eventInfoToPass, currentUser, currentOrganizer}) {
-    const [eventWithId, setEventWithId]=useState({})
+    // const [eventWithId, setEventWithId]=useState({})
     // console.log(eventInfoToPass)
 
     const navigate = useNavigate()
@@ -23,7 +24,7 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
     // console.log(eventArray[0].signups)
 
     const townEventSignups=eventArray[0].signups
-    console.log(townEventSignups)
+    // console.log(townEventSignups)
 
       const handleRsvp =[0]
     const eventSignups = [{
@@ -38,14 +39,11 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
       handleRsvp.push(eachSignup.user_id)
     })
 
-
-  //  eventSignups.push(eventArray[0].signups[0])
-
     // console.log(eventSignups)
     townEventSignups.forEach(signup => {
       if (signup.user_id === currentUser.id) {
         handleRsvp.push(signup.user_id)
-      } 
+      } else {}
     })
     // console.log(selectedEvent)
     // console.log(handleRsvp.includes(currentUser.id))
@@ -71,8 +69,7 @@ console.log(handleRsvp)
     }
 
     function handleInfoClick (e) {
-      
-      navigate('/upcoming/more-info', {state:{...eventArray[0]}})
+      navigate(`/more-info/${eventArray[0].id}`, {state:{...eventArray[0]}})
     }
 
     function handleCancelRsvpClick (e) {
@@ -95,9 +92,9 @@ console.log(handleRsvp)
               {selectedEvent.title}
               </Modal.Title>
           </Modal.Header>
-          <Modal.Body>Would you like to RSVP for this event?</Modal.Body>
+          <Modal.Body>{eventArray[0].event_description}</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleInfoClick}>
+            <Button variant="secondary" onClick={handleClose}>
               See more info here!
             </Button>
             {
@@ -116,25 +113,3 @@ console.log(handleRsvp)
     }
 
 export default EventModal;
-
-
-              //  handleRsvp.includes(currentUser.id)
-              // // (currentUser && currentUser.id === handleRsvp[1].user_id) 
-              // // (eventSignups[0].user_id&& === currentUser.id)
-              //  ?
-              //   (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
-              // :
-              //   (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
-                          {/* <Button variant="primary" onClick={handleRsvpClick}>
-              RSVP
-            </Button> */}
-
-
-
-
-                         // townEventSignups.forEach((signup)=> {
-              //   if (signup.user_id === currentUser.id) {
-              //     (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
-
-              //   } else {(<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)}
-              // }) 

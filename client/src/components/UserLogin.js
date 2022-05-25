@@ -31,8 +31,8 @@ function UserLogin ({setCurrentUser, currentUser}) {
         })
     }
 
-    return (<div>
-
+    return (
+        <div className='container'>
             <form onSubmit={handleLoginSubmit} className="login-form">
                 <input
                 type='text'
@@ -55,10 +55,11 @@ function UserLogin ({setCurrentUser, currentUser}) {
                 </input>
                 <button type='submit'>Submit</button>
             </form>
-            <p>New user? Singup <Link to='/signup'>here</Link></p>
+            <br></br>
+            <p>New user? Signup <Link to='/signup'>here</Link></p>
+            <br></br>
             <p>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
-
-    </div>)
+        </div>)
 
 }
 

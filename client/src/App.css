@@ -189,7 +189,7 @@
 .panel-1 {
   flex-basis: 43%;
   flex-grow: 1;
-  background-image: url('./imgs/jetty.jpg') ;
+  background-image: url('./imgs/jetty.jpg');
   background-size: cover;
   background-position: center;
   padding: 40px;
@@ -200,10 +200,12 @@
   flex-basis: 57%;
   flex-grow: 1;
   padding: 40px 80px;
-  background-image: ;
+  background-image: url('./imgs/waves.png');
   background-size: contain;
   background-position: bottom;
   background-repeat: no-repeat;
+  color: green;
+  /* opacity: 50%; */
 }
 
 /* .event-page-nav {
@@ -212,3 +214,5 @@
   align-items: center;
   justify-content: space-between;
 } */
+
+

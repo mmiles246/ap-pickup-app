@@ -5,6 +5,7 @@ import UnAuthenticatedHome from './components/UnAuthenticatedHome';
 import UserLogin from "./components/UserLogin";
 import UnAuthCalendarComponent from './components/UnAuthCalendarComponent';
 import Signup from './components/Signup';
+import ContactPage from './components/ContactPage';
 
 function UnAuthenticatedApp ({setCurrentUser, setCurrentOrganizer, currentUser, currentOrganizer}) {
 
@@ -14,6 +15,7 @@ function UnAuthenticatedApp ({setCurrentUser, setCurrentOrganizer, currentUser, 
                 <Route path='/' element={<NavBar />}>
                     <Route index element={<UnAuthenticatedHome/>} />
                     <Route path='upcoming' element={<UnAuthCalendarComponent currentUser={currentUser} currentOrganizer={currentOrganizer} />} />
+                    <Route path='contactus' element={<ContactPage />} />
                     <Route path='login' element={<UserLogin setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
                     <Route path='/signup' element={<Signup setCurrentUser={setCurrentUser} />} />
                     <Route path='organizer-login' element={<OrganizerLogin setCurrentOrganizer={setCurrentOrganizer} />} />

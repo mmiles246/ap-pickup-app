@@ -9,8 +9,8 @@ class TownEventsMailer < ApplicationMailer
     @greeting = "Hi"
 
     mail(
-        from: 'from@example.com',
-        to: 'mmiles246@yahoo.com',
+        from: 'michael.miles2468@gmail.com',
+        to: 'mike.spillingoverstudios@gmail.com',
         subject: "New event posted!")
   end
 end

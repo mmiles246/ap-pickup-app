@@ -9,7 +9,7 @@ class User < ApplicationRecord
     has_many :event_comments, through: :user_comments, source: :town_event
     
 
-    validates :email, uniqueness: true
+    validates :email, uniqueness: true, presence: true
     validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
     # validates :email, :first_name, :last_name, :newsletter, :interested_in, presence: true
 end

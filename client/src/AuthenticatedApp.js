@@ -8,6 +8,8 @@ import OrganizeEvent from "./components/OrganizeEvent";
 import AuthCalendarComponent from "./components/AuthCalendarComponent";
 import OrganizedEventsPage from "./components/OrganizedEventsPage";
 import EditEventPage from "./components/EditEventPage";
+import MoreInfoPage from "./components/MoreInfoPage";
+import ContactPage from "./components/ContactPage";
 
 
 function AuthenticatedApp ({currentUser, setCurrentUser, setCurrentOrganizer, currentOrganizer}) {
@@ -19,11 +21,12 @@ function AuthenticatedApp ({currentUser, setCurrentUser, setCurrentOrganizer, cu
                 <Route index element={<AuthenticatedHome />} />
                 <Route path='upcoming' element={<AuthCalendarComponent currentUser={currentUser} currentOrganizer={currentOrganizer} />} >
                     <Route path=':event_id' />
-                    
                 </Route>
+                <Route path='more-info/:event_id' element={<MoreInfoPage />} />
                 <Route path='my-organized-events' element={<OrganizedEventsPage currentOrganizer={currentOrganizer} />} >
                     <Route path=':event_id' element={<EditEventPage currentOrganizer={currentOrganizer} />} />
                 </Route>
+                <Route path='contactus' element={<ContactPage />} />
                 <Route path="login" element={<UserLogin/>} />
                 <Route path="organizer-login" element={<OrganizerLogin />} />
                 <Route path="organize-event" element={<OrganizeEvent />} />

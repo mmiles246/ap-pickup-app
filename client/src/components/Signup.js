@@ -127,7 +127,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
 
                     <br></br>
 
-                    <Select isMulti name='interested_in' options={options} onChange={handleInputChange} value={signupInfo.interested_in} />
+                    <Select isMulti name='interested_in' options={options}   />
 
                     <span>Would you like to recieve emails about new events in the area?</span>
 

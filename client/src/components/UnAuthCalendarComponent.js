@@ -12,7 +12,7 @@ import {Modal, Button} from 'react-bootstrap'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { ca } from "date-fns/locale";
-import EventModal from "./EventModal";
+import UnAuthEventModal from "./UnAuthEventModal";
 import { set } from "date-fns";
 
 
@@ -29,16 +29,16 @@ const localizer = dateFnsLocalizer({
 });
 
 function UnAuthCalendarComponent () {
-    const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+    // const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [fetchedEvents, setFetchedEvents] = useState([]);
-    const [eventInfoToPass, setEventInfoToPass]=useState([])
+    // const [eventInfoToPass, setEventInfoToPass]=useState([])
 
     const [selectedEvent, setSelectedEvent] = useState(undefined);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     function handleShow (e) {
         console.log(e)
@@ -46,18 +46,17 @@ function UnAuthCalendarComponent () {
         setShow(true)
     }
 
-    function handleSelectEvent (e) {
-        console.log(e)
-        setSelectedEvent(e)
-        navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
+    // function handleSelectEvent (e) {
+    //     console.log(e)
+    //     setSelectedEvent(e)
+    //     navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
 
-    }
+    // }
 
     useEffect(()=> {
         fetch('/town_events')
         .then(res=>res.json())
         .then((res)=> {
-            setEventInfoToPass(res)
             setFetchedEvents(res.map(eachEvent=> {
                 return {
                     title: eachEvent.name,
@@ -77,16 +76,6 @@ function UnAuthCalendarComponent () {
             <Row>
                 <Col xs={2}>
                     <h1>Events Calendar</h1>
-                    {/* {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
-                    :
-                    (null)
-                    }
-                    {currentUser && currentUser.signups ? (<p>You have upcoming events!</p>)
-                    :
-                    (null)
-                    } */}
-                    
-                    {/* <div>{organizerEvents.map(organizerEventMapper)}</div> */}
                     
                 </Col>
                 <Col xs={9}>
@@ -98,17 +87,12 @@ function UnAuthCalendarComponent () {
                     endAccessor="end" 
                     style={{ height: 750, margin: "50px" }}
                     eventPropGetter={(e)=> {
-                        // console.log(e)
                         const backgroundColor = e.allday ? 'green' : 'blue'
                         return {style: {backgroundColor}}
                     }} />
                 </Col>
             </Row>
-            {/* {show ? navigate(`/upcoming/${selectedEvent.id}`,{state:{handleShow, handleClose, selectedEvent}} )
-            :
-            (<></>)
-            } */}
-            {show ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} />)
+            {show ? (<UnAuthEventModal show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} />)
             :
             <></>}
         </div>
