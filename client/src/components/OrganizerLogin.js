@@ -33,29 +33,36 @@ function OrganizerLogin ({setCurrentOrganizer}) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleLoginSubmit} className="login-form">
-            <input
-            type='text'
-            name='email'
-            placeholder='email'
-            value={email}
-            onChange={(e)=> setEmail(e.target.value)}
-            >
-            </input>
+        <div className='organizer-login-page'>
+            <div className='login-container'>
+                <div className='organizer-login-header'>
+                    <h1>Login</h1>
+                </div>
+                <div className='login-form'>
+                    <form onSubmit={handleLoginSubmit} className="login-form">
+                    <input
+                    type='text'
+                    name='email'
+                    placeholder='email'
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
+                    >
+                    </input>
 
-            <br></br>
-            <br></br>
+                    <br></br>
+                    <br></br>
 
-            <input
-            type='password'
-            name='password'
-            placeholder="password"
-            value={password}
-            onChange={(e)=> setPassword(e.target.value)}>
-            </input>
-            <button type='submit'>Submit</button>
-            </form>
+                    <input
+                    type='password'
+                    name='password'
+                    placeholder="password"
+                    value={password}
+                    onChange={(e)=> setPassword(e.target.value)}>
+                    </input>
+                    <button type='submit'>Submit</button>
+                    </form>
+                </div>
+            </div>
         </div>)
 
 }

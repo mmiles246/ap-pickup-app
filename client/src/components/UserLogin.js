@@ -32,34 +32,47 @@ function UserLogin ({setCurrentUser, currentUser}) {
     }
 
     return (
-        <div className='container'>
-            <form onSubmit={handleLoginSubmit} className="login-form">
-                <input
-                type='text'
-                name='email'
-                placeholder='email'
-                value={email}
-                onChange={(e)=> setEmail(e.target.value)}
-                >
-                </input>
+        <div className='login-page'>
+            <div className='login-container'>
+                <div className='login-header'>
+                    <h1>Login</h1>
+                </div>
+                <div className='login-form'>
+                    <form onSubmit={handleLoginSubmit} className="login-form">
+                        <span>
+                            <i></i>
+                            <input
+                            type='text'
+                            name='email'
+                            placeholder='email'
+                            value={email}
+                            onChange={(e)=> setEmail(e.target.value)}
+                            >
+                            </input>
+                        </span>
+                        <br></br>
+                        <br></br>
 
+                        <span>
+                            <i></i>
+                            <input
+                            type='password'
+                            name='password'
+                            placeholder="password"
+                            value={password}
+                            onChange={(e)=> setPassword(e.target.value)}>
+                            </input>
+                        </span>
+                        <button type='submit'>Submit</button>
+                    </form>
+                </div>
                 <br></br>
+                <p>New user? Signup <Link to='/signup'>here</Link></p>
                 <br></br>
-
-                <input
-                type='password'
-                name='password'
-                placeholder="password"
-                value={password}
-                onChange={(e)=> setPassword(e.target.value)}>
-                </input>
-                <button type='submit'>Submit</button>
-            </form>
-            <br></br>
-            <p>New user? Signup <Link to='/signup'>here</Link></p>
-            <br></br>
-            <p>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
-        </div>)
+                <p>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
+            </div>
+        </div>
+        )
 
 }
 
