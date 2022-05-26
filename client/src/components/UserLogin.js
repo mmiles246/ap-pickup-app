@@ -69,7 +69,7 @@ function UserLogin ({setCurrentUser, currentUser}) {
                 <br></br>
                 <p>New user? Signup <Link to='/signup'>here</Link></p>
                 <br></br>
-                <p>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
+                <p id='organizer-login-link'>Organizer Account? Sign in <Link to='/organizer-login'>here</Link></p>
             </div>
         </div>
         )

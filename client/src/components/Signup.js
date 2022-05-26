@@ -7,12 +7,13 @@ import Select from 'react-select'
 function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
     const navigate=useNavigate()
     const [checkedState, setCheckedState]=useState(false)
+    const [selectedValue, setSelectedValue]=useState([])
     const [signupInfo, setSignupInfo]=useState({
     first_name: "",
     last_name: "",
     email: "",
     password: "",
-    interested_in: [],
+    interested_in: [""],
     newsletter: false
     })
 
@@ -34,10 +35,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
     }
 
     function handleSelectChange (e) {
-        setSignupInfo({
-            ...signupInfo,
-            
-        })
+        setSelectedValue(Array.isArray(e) ? e.map(x => x.value) : [])
     }
 
     function handleCheckboxClick (e) {
@@ -60,8 +58,8 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
         last_name: signupInfo.last_name,
         email: signupInfo.email,
         password: signupInfo.password,
-        interested_in: signupInfo.interested_in,
-        newsletter: signupInfo.newsletter
+        interested_in: selectedValue,
+        newsletter: checkedState
     })
     })
     .then(res=> {
@@ -127,7 +125,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
 
                     <br></br>
 
-                    <Select isMulti name='interested_in' options={options}   />
+                    <Select isMulti isClearable name='interested_in' options={options} onChange={handleSelectChange} value={options.filter(obj => selectedValue.includes(obj.value))}   />
 
                     <span>Would you like to recieve emails about new events in the area?</span>
 
@@ -138,6 +136,8 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
                     name='newsletter'
                     type='checkbox'
                     value={signupInfo.newsletter}
+                    checked={checkedState}
+                    onChange={handleCheckboxClick}
                     ></input>
 
                     <br></br>

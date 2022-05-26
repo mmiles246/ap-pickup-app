@@ -38,7 +38,7 @@ function OrganizerLogin ({setCurrentOrganizer}) {
                 <div className='organizer-login-header'>
                     <h1>Login</h1>
                 </div>
-                <div className='login-form'>
+                <div className='organizer-login-form'>
                     <form onSubmit={handleLoginSubmit} className="login-form">
                     <input
                     type='text'

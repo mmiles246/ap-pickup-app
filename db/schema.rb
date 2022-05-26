@@ -105,7 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_20_221558) do
     t.boolean "newsletter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "interested_in", default: [], array: true
+    t.string "interested_in", array: true, default: []
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

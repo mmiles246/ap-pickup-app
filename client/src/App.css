@@ -237,7 +237,12 @@
 
 .login-container p {
   color: antiquewhite;
+  margin-bottom: 3px;
 }
+
+/* #organizer-login-link {
+  margin-bottom: 100px;
+} */
 
 .login-header {
   text-align: center;
@@ -284,6 +289,15 @@
   letter-spacing: 1px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+.organizer-login-form button {
+  text-align: center;
+  padding-left: 0;
+  background-color: #83acf1;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-bottom: 80px;
 }
 
 .login-form button:hover {
