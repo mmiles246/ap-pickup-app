@@ -4,4 +4,8 @@ class UserSessionSerializer < ActiveModel::Serializer
   def is_user
     true
   end
+
+  def likes_this_type_event
+    object.interested_in
+  end
 end

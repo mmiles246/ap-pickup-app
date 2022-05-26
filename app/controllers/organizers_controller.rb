@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-
+    skip_before_action :confirm_authentication
     def index
         organizers=Organizer.all
         render json: organizers, status: :ok

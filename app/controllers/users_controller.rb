@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+skip_before_action :confirm_authentication, only: [:create]
     def index 
         users=User.all
         render json: users, status: :ok
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     # end 
 
     def create
-        byebug
+        # byebug
         user=User.create(user_params)
         if user.valid?
             session[:user_id]=user.id

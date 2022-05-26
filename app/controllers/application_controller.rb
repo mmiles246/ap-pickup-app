@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
+    before_action :confirm_authentication
 
     def hello_world
         session[:count] = (session[:count] || 0) + 1
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::API
     end
 
     def confirm_authentication
-        render json: {error: "Must be an Organizer."}, status: :unauthorized unless current_organizer
+        render json: {error: "Must be signed in to do this."}, status: :unauthorized unless current_organizer||current_user
     end
 
 end

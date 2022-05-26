@@ -10,7 +10,7 @@ class TownEventsMailer < ApplicationMailer
 
     mail(
         from: 'michael.miles2468@gmail.com',
-        to: 'mike.spillingoverstudios@gmail.com',
+        to: User.last.email,
         subject: "New event posted!")
   end
 end
