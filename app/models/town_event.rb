@@ -3,8 +3,8 @@ class TownEvent < ApplicationRecord
 
   belongs_to :organizer
 
-  has_many :signups
-  has_many :users, through: :signups
+  has_many :signups, dependent: :destroy
+  has_many :users, through: :signups, dependent: :destroy
 
   has_many :user_comments
   has_many :user_event_comments, through: :user_comments, source: :user

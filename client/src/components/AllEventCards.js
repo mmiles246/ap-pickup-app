@@ -1,30 +1,25 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import {Modal, Button} from 'react-bootstrap'
-import EditEventModal from './EditEventModal';
+import AdminEditEventModal from './AdminEditEventModal';
 
-function EachEventCard ({eachEvent}) {
+function AllEventCards ({eachEvent}) {
     const [eventToEdit, setEventToEdit]=useState(eachEvent)
     
     const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+
     const navigate=useNavigate()
-    
-    // const handleClose = () => setShow(false);
-
-    function handleClose (e) {
-        setShow(false)
-        navigate('/my-organized-events')
-    }
-
-
 
     function onClick (e) {
         console.log(e)
         setShow(true)
-        navigate(`/my-organized-events/${eachEvent.id}`, {state: {eachEvent}})
+        navigate(`/all-events/${eachEvent.id}`, {state: {eachEvent}})
     }
 
+
+    // console.log(eachEvent)
     return (
         <div>
             <h4>{eachEvent.name}</h4>
@@ -34,10 +29,11 @@ function EachEventCard ({eachEvent}) {
 
             <br></br>
             <br></br>
+            <h5>Organized by: {eachEvent.organizer.first_name}</h5>
         {/* <Link to=(`/my-event/${}`) eachEvent={eachEvent}>Edit Event?</Link> */}
         <button onClick={onClick}>Edit Event?</button>
 
-        {show ? (<EditEventModal eventToEdit={eventToEdit} show={show} setShow={setShow} handleClose={handleClose} />)
+        {show ? (<AdminEditEventModal eventToEdit={eventToEdit} show={show} setShow={setShow} handleClose={handleClose} />)
             :
             <></>}
 
@@ -46,4 +42,4 @@ function EachEventCard ({eachEvent}) {
 
 }
 
-export default EachEventCard;
+export default AllEventCards;

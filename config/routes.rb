@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :organizers
 
-  get '/me', to: 'application#user_or_organizer'
+  get '/logged_in', to: 'application#user_or_organizer'
 
   get '/users', to: 'users#index'
 
@@ -30,10 +30,10 @@ Rails.application.routes.draw do
 
   put '/organize_event/:event_id', to: 'town_events#update'
 
-  delete '/logout', to: 'sessions#delete'
+  delete '/logout', to: 'sessions#destroy'
 
-  delete '/my_event/:event_id', to: 'town_events#delete'
+  delete '/my_event/:event_id', to: 'town_events#destroy'
 
-  delete 'event_rsvp/:town_event_id', to: 'signups#delete'
+  delete 'event_rsvp/:town_event_id', to: 'signups#destroy'
   
 end

@@ -1,7 +1,7 @@
 class TownEventsController < ApplicationController
-    # before_action :set_town_event, only: [:show, :update, :destroy]
-    # before_action :authorize_admin, only: [:create, :update, :destroy]
-    # skip_before_action :confirm_authentication, only: [:index]
+    before_action :set_town_event, only: [:show, :update, :destroy]
+    before_action :authorize_admin, only: [:update, :destroy]
+    skip_before_action :confirm_authentication, only: [:index]
 
     def index 
         # byebug
@@ -62,10 +62,10 @@ class TownEventsController < ApplicationController
         render json: @town_event, status: :ok, serializer: EditEventSerializerSerializer
     end
 
-    def delete
-        event_to_destroy=TownEvent.find_by(id: params[:event_id])
-        # @town_event.delete
-        event_to_destroy.destroy
+    def destroy
+        # event_to_destroy=TownEvent.find_by(id: params[:event_id])
+        @town_event.destroy
+        # event_to_destroy.destroy
         head :no_content 
     end
 
@@ -77,27 +77,21 @@ class TownEventsController < ApplicationController
     end
 
     def set_town_event
-        @town_event=TownEvent.find(params [:id])
+        @town_event=TownEvent.find_by(id: params[:event_id])
     end
 
+    # def authorize_admin
+    #     organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == current_organizer.id)
+    #     render json: {error: "You don't have permission to perform this action"}, status: :forbidden
+    # end
+
     def authorize_admin
-        organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == current_organizer.id)
-        render json: {error: "You don't have permission to perform this action"}, status: :forbidden
+        # byebug
+        organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == @current_organizer.id)
+        # byebug
+        render json: {error: "You don't have permission to perform this action"}, status: :forbidden unless organizer_can_modify
     end
 
 end
 
 
-        # new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
-        
-        # if logged_in_organizer
-        #     new_town_event=logged_in_organizer.town_events.create(town_event_params)
-
-        #     if new_town_event.valid?
-        #         render json: new_town_event
-        #         # if new_town_event.type_of 
-        #         #     TownEventsMailer.town_event_posted.deliver_now
-        #     else
-        #         new_town_event.errors.full_messages
-        #     end
-        # end

@@ -11,7 +11,7 @@ function App() {
     const [authChecked, setAuthChecked]=useState(false)
   
     useEffect(() => {
-      fetch("/me", {
+      fetch("/logged_in", {
         credentials: 'include'
       })
         .then((r) => {

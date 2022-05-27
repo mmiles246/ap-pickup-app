@@ -19,14 +19,14 @@ skip_before_action :confirm_authentication, only: [:create, :organizer_create, :
         organizer=Organizer.find_by_email(params[:email])
             if organizer&.authenticate(params[:password])
                 session[:organizer_id] = organizer.id
-                profile_img=rails_blob_path(organizer.profile_img)
-                render json: {organizer: organizer, profile_img: profile_img}, status: :ok
+                # profile_img=rails_blob_path(organizer.profile_img)
+                render json: organizer, status: :ok
             else
                 render json: {error: "Invalid email or password."}
             end
     end
 
-    def delete
+    def destroy
         session.delete :user_id
         session.delete :organizer_id
 

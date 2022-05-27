@@ -11,7 +11,7 @@ class SignupsController < ApplicationController
         render json: user_signup, status: :created
     end
 
-    def delete
+    def destroy
         cancel_rsvp=Signup.find_by(town_event_id: params[:town_event_id])
         # byebug
         cancel_rsvp.destroy

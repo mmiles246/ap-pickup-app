@@ -3,7 +3,7 @@ import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import { useState, useEffect} from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
@@ -14,6 +14,7 @@ import Row from 'react-bootstrap/Row'
 import { ca } from "date-fns/locale";
 import EventModal from "./EventModal";
 import OrganizerEventModal from "./OrganizerEventModal";
+import AllTownEventsEdit from "./AllTownEventsEdit";
 import { set } from "date-fns";
 
 
@@ -44,25 +45,21 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     function handleClose (e) {
         setShow(false)
         navigate('/upcoming')
-
     }
 
-    
-
     function handleShow (e) {
-
         setSelectedEvent(e)
         setShow(true)
         // console.log(selectedEvent.id)
         navigate(`/upcoming/${selectedEvent.id}`)
     }
 
-    function handleSelectEvent (e) {
-        console.log(e)
-        setSelectedEvent(e)
-        navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
+    // function handleSelectEvent (e) {
+    //     console.log(e)
+    //     setSelectedEvent(e)
+    //     navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
 
-    }
+    // }
 
     useEffect(()=> {
         fetch('/town_events')
@@ -84,6 +81,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         })
     }, [])
 
+    // console.log(eventInfoToPass)
     return(
         <div>
             <Row>
@@ -93,6 +91,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     :
                     (null)
                     }
+                    {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
+
                     {currentUser && currentUser.signups ? (<p>You have upcoming events!</p>)
                     :
                     (null)
@@ -121,6 +121,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
             :
             (<></>)
             }
+            <Outlet />
         </div>
     )
 

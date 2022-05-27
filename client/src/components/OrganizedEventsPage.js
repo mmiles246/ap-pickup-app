@@ -13,22 +13,15 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
     const handleClose = () => setShow(false);
 
-    // console.log(currentOrganizer)
-
     useEffect(()=>{
         fetch('/town_event_page')
         .then(res=>res.json())
         .then((res)=> {
-            // console.log(res)
+            console.log(res)
             setEventPageInfo(res.town_events)
         })
     }, [])
     console.log(eventPageInfo)
-
-
-    // function townEventsMapper (townEvent) {
-    //     return (<span>{townEvent}</span>)
-    // }
 
     return (
         <>
@@ -41,17 +34,6 @@ function OrganizedEventsPage ({currentOrganizer}) {
             <EditEventModal show={show} handleClose={handleClose} eventToEdit={eventToEdit}/>
 
         </>)
-        // currentOrganizer ? 
-        // (<div>
-        //     filteredEvents.map((eachEvent)=> {
-        //         (<h3>{eachEvent}</h3>)
-        //     })
-
-        // </div>)
-        // :
-        // (<div></div>)
-    
-
 }
 
 export default OrganizedEventsPage;
