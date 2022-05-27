@@ -1,8 +1,10 @@
 class TownEventsController < ApplicationController
-    before_action :set_town_event, only: [:show, :update, :destroy]
-    skip_before_action :confirm_authentication, only: [:index]
+    # before_action :set_town_event, only: [:show, :update, :destroy]
+    # before_action :authorize_admin, only: [:create, :update, :destroy]
+    # skip_before_action :confirm_authentication, only: [:index]
 
     def index 
+        # byebug
         town_events=TownEvent.all
         render json: town_events, status: :ok
     end
@@ -18,23 +20,38 @@ class TownEventsController < ApplicationController
     # end
 
     def create
-        users_interests=User.all.pluck(:email, :interested_in)
-        byebug
-    
-    #     new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
-        
-    #     if logged_in_organizer
-    #         new_town_event=logged_in_organizer.town_events.create(town_event_params)
+        # byebug
 
-    #         if new_town_event.valid?
-    #             render json: new_town_event
-    #             if new_town_event.type_of 
-    #                 TownEventsMailer.town_event_posted.deliver_now
-                
-    #         else
-    #             new_town_event.errors.full_messages
-    #         end
-    #     end
+        new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
+
+        if logged_in_organizer
+            new_town_event=logged_in_organizer.town_events.create(town_event_params)
+
+
+            end
+
+            users_to_email=[]
+            users=User.all
+            byebug
+            users.map do |user|
+                if user.interested_in.include?(new_town_event.type_of)
+                    users_to_email<<user
+                    byebug    
+                end
+            
+            end
+
+        if new_town_event.valid?
+            render json: new_town_event
+            TownEventsMailer.town_event_posted(users_to_email).deliver_now
+        else
+            new_town_event.errors.full_messages
+        end
+    
+        
+        
+    
+
     end
 
     def update
@@ -45,9 +62,10 @@ class TownEventsController < ApplicationController
         render json: @town_event, status: :ok, serializer: EditEventSerializerSerializer
     end
 
-    def destroy
-        # event_to_destroy=TownEvent.find_by(id: params[:event_id])
-        @town_event.destroy
+    def delete
+        event_to_destroy=TownEvent.find_by(id: params[:event_id])
+        # @town_event.delete
+        event_to_destroy.destroy
         head :no_content 
     end
 
@@ -68,3 +86,18 @@ class TownEventsController < ApplicationController
     end
 
 end
+
+
+        # new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
+        
+        # if logged_in_organizer
+        #     new_town_event=logged_in_organizer.town_events.create(town_event_params)
+
+        #     if new_town_event.valid?
+        #         render json: new_town_event
+        #         # if new_town_event.type_of 
+        #         #     TownEventsMailer.town_event_posted.deliver_now
+        #     else
+        #         new_town_event.errors.full_messages
+        #     end
+        # end

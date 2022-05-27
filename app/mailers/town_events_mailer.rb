@@ -5,12 +5,13 @@ class TownEventsMailer < ApplicationMailer
   #
   #   en.town_events_mailer.town_event_posted.subject
   #
-  def town_event_posted
+  def town_event_posted(users)
     @greeting = "Hi"
+
 
     mail(
         from: 'michael.miles2468@gmail.com',
-        to: User.last.email,
+        to: users.pluck(:email),
         subject: "New event posted!")
   end
 end

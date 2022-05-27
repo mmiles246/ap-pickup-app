@@ -33,4 +33,9 @@ class ApplicationController < ActionController::API
         render json: {error: "Must be signed in to do this."}, status: :unauthorized unless current_organizer||current_user
     end
 
+    def authorize_admin
+        organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == current_organizer.id)
+        render json: {error: "You don't have permission to perform this action"}, status: :forbidden
+    end
+
 end
