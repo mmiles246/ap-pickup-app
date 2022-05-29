@@ -73,6 +73,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     end: new Date(eachEvent.end_time), 
                     type_of: eachEvent.type_of,
                     location: eachEvent.location,
+                    event_description: eachEvent.event_description,
+                    organizer: eachEvent.organizer,
                     id: eachEvent.id
                     
                 }

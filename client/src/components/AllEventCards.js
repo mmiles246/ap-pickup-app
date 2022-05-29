@@ -30,6 +30,7 @@ function AllEventCards ({eachEvent}) {
             <br></br>
             <br></br>
             <h5>Organized by: {eachEvent.organizer.first_name}</h5>
+            <h6>Organizer ID: {eachEvent.organizer.id}</h6>
         {/* <Link to=(`/my-event/${}`) eachEvent={eachEvent}>Edit Event?</Link> */}
         <button onClick={onClick}>Edit Event?</button>
 

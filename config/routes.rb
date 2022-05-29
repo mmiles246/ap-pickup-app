@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/town_event_page', to: 'organizers#show'
 
+  get '/user_comments', to: 'user_comments#index'
+
   post '/signup', to: 'users#create'
 
   post '/user_login', to: 'sessions#create'
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
   post '/event_rsvp', to: 'signups#create'
   
   post 'event_rsvp', to: 'signups#create'
+
+  post 'event_comments', to: 'user_comments#create'
 
   put '/organize_event/:event_id', to: 'town_events#update'
 

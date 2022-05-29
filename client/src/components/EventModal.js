@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link, Navigate } from 'react-router-dom';
 
 import {Modal, Button} from 'react-bootstrap'
 
@@ -69,7 +69,10 @@ console.log(handleRsvp)
     }
 
     function handleInfoClick (e) {
-      navigate(`/more-info/${eventArray[0].id}`, {state:{...eventArray[0]}})
+      navigate(`/more-info/${selectedEvent.id}`, {state: {
+        event: selectedEvent,
+        currentUser: currentUser,
+      }})
     }
 
     function handleCancelRsvpClick (e) {
@@ -94,7 +97,7 @@ console.log(handleRsvp)
           </Modal.Header>
           <Modal.Body>{eventArray[0].event_description}</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handleInfoClick}>
               See more info here!
             </Button>
             {

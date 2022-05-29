@@ -320,7 +320,15 @@
   color: #333;
   font-size: 16px;
   top: 2px;
+}
 
+.comment-section {
+  border: #282c34;
+  border-style: dotted;
+}
+
+.comment-textarea {
+  width: 500px;
 }
 
 

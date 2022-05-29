@@ -9,6 +9,8 @@ function EachEventCard ({eachEvent}) {
     const [show, setShow] = useState(false);
 
     const navigate=useNavigate()
+
+    console.log(eachEvent)
     
     // const handleClose = () => setShow(false);
 
@@ -31,6 +33,8 @@ function EachEventCard ({eachEvent}) {
             <span>{eachEvent.location}</span>
             <br></br>
             <span>{new Date(eachEvent.start_time).toString()}</span>
+            <br></br>
+            <h6>Number of RSVPs: {eachEvent.signups.length}</h6>
 
             <br></br>
             <br></br>
