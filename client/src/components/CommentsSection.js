@@ -2,11 +2,13 @@ import UserCommentForm from './UserCommentForm';
 import UserCommentCard from './UserCommentCard';
 
 import {useState, useEffect} from 'react'
+import { set } from 'date-fns';
 
 
 function CommentsSection ({currentUser, thisEvent}) {
     const [commentText, setCommentText]=useState("")
     const [fetchedUserComments, setFetchedUserComments]=useState([])
+    const [submitState, setSubmitState]=useState(false)
     const disableSubmit = commentText.length === 0;
 
     useEffect(()=> {
@@ -15,11 +17,12 @@ function CommentsSection ({currentUser, thisEvent}) {
             if(res.ok){
                 res.json().then(user_comments => {
                     setFetchedUserComments(user_comments)
+                    setSubmitState(false)
                 })
             }
         })
         
-    }, [] )
+    }, [submitState] )
 
     console.log(fetchedUserComments)
 
@@ -40,6 +43,8 @@ function CommentsSection ({currentUser, thisEvent}) {
                 town_event_id: thisEvent.id
             })
         })
+        setCommentText("")
+        setSubmitState(true)
     }
 
     
@@ -48,10 +53,13 @@ function CommentsSection ({currentUser, thisEvent}) {
         <div className='comment-section'>
             <h1>Comments Will be Here</h1>
             {fetchedUserComments.map(commentsMapper)}
-            <UserCommentForm handleSubmit={handleSubmit} setCommentText={setCommentText} commentText={commentText} />
+            <UserCommentForm handleSubmit={handleSubmit} setCommentText={setCommentText} commentText={commentText} currentUser={currentUser}/>
         </div>
     )
     
 }
 
 export default CommentsSection;
+
+
+// .then(fetch('/event_comments').then(res=>res.json()).then((comments)=>setFetchedUserComments(comments)))

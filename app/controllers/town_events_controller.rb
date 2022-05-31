@@ -32,11 +32,11 @@ class TownEventsController < ApplicationController
 
             users_to_email=[]
             users=User.all
-            byebug
+
             users.map do |user|
                 if user.interested_in.include?(new_town_event.type_of)
                     users_to_email<<user
-                    byebug    
+       
                 end
             
             end

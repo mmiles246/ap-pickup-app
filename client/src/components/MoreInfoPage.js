@@ -9,7 +9,7 @@ function MoreInfoPage () {
 
     const thisEvent= location.state.event
     const currentUser= location.state.currentUser
-    // const eventDate= new Date(thisEvent.start_time)
+    console.log(currentUser)
 
     return (
         <div className='event-page-header'>

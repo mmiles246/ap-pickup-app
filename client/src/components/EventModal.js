@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, Link, Navigate } from 'react-router-dom';
 
+
 import {Modal, Button} from 'react-bootstrap'
 
 
-function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eventInfoToPass, currentUser, currentOrganizer}) {
+function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eventInfoToPass, currentUser, currentOrganizer, setStateToRerender}) {
     // const [eventWithId, setEventWithId]=useState({})
     // console.log(eventInfoToPass)
 
     const navigate = useNavigate()
     const location = useLocation()
+
 
     const eventArray = []
 
@@ -64,6 +66,7 @@ console.log(handleRsvp)
         })
       })
       alert("Succsessfully RSVP'd!")
+      setStateToRerender(true)
       setShow(false)
       // navigate('/upcoming')
     }
@@ -82,6 +85,7 @@ console.log(handleRsvp)
       })
       handleRsvp.pop()
       alert("Succsessfully canceled RSVP")
+      setStateToRerender(true)
       setShow(false)
       navigate('/upcoming')
     }

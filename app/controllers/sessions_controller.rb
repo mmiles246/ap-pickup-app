@@ -7,8 +7,6 @@ skip_before_action :confirm_authentication, only: [:create, :organizer_create, :
             if user&.authenticate(params[:password])
                 session[:user_id] =user.id
                 # profile_img=rails_blob_path(user.profile_img)
-
-                # render json: {user: user, profile_img: profile_img}, status: :ok
                 render json: user, status: :ok
             else 
                 render json: {error: "Invalid email or password."}, status: :unauthorized
@@ -22,7 +20,7 @@ skip_before_action :confirm_authentication, only: [:create, :organizer_create, :
                 # profile_img=rails_blob_path(organizer.profile_img)
                 render json: organizer, status: :ok
             else
-                render json: {error: "Invalid email or password."}
+                render json: {error: "Invalid email or password."}, status: :unauthorized
             end
     end
 

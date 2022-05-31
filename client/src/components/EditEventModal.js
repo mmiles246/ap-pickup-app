@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
-function EditEventModal ({show, handleClose, eventToEdit}) {
+function EditEventModal ({show, setShow, handleClose, eventToEdit}) {
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
         name: "",
@@ -27,6 +27,8 @@ function EditEventModal ({show, handleClose, eventToEdit}) {
             method: 'DELETE',
             credentials: 'include'
         })
+        setShow(false)
+        alert("Event deleted.")
     }
 
     function handleInputChange (e) {

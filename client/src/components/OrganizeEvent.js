@@ -21,7 +21,7 @@ function OrganizeEvent () {
     }
 
     function handleSubmit (e) {
-        e.preventDefault()
+        // e.preventDefault()
         fetch('/organize_event', {
             method: 'POST',
             headers: {
@@ -36,6 +36,7 @@ function OrganizeEvent () {
                 event_description: newEvent.event_description,
                 sponsors: newEvent.sponsors
                 // organizer_id: currentOrganizer.id
+
             })
         })
         .then(res=> {
@@ -47,6 +48,7 @@ function OrganizeEvent () {
                 })
             }
         })
+        alert("Your event has been posted!")
     }
 
     return(

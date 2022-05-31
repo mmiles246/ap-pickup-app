@@ -1,6 +1,6 @@
 function UserCommentCard ({eachComment}) {
 
-    console.log(eachComment)
+    
     const userThatCommented = eachComment.user.first_name
     return(
         <div>

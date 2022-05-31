@@ -30,7 +30,7 @@ function LogoutBttn ({setCurrentOrganizer, setCurrentUser}) {
 
     return (
         <>
-        <button type="submit" onClick={handleLogOut}>Logout</button>
+        <button className='logout-bttn' type="submit" onClick={handleLogOut}>Logout</button>
         {/* <LogoutModal show={show} setShow={setShow} handleClose={handleClose} /> */}
         </>
     )

@@ -31,7 +31,7 @@ function OrganizedEventsPage ({currentOrganizer}) {
                 <EachEventCard  key={eachEvent.id} eachEvent={eachEvent} />
                 )
             })}
-            <EditEventModal show={show} handleClose={handleClose} eventToEdit={eventToEdit}/>
+            <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit}/>
 
         </>)
 }

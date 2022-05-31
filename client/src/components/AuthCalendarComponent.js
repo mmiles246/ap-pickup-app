@@ -34,6 +34,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [fetchedEvents, setFetchedEvents] = useState([]);
     const [eventInfoToPass, setEventInfoToPass]=useState([])
+    const [stateToRerender, setStateToRerender]=useState(false)
 
     const navigate = useNavigate()
 
@@ -65,6 +66,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         fetch('/town_events')
         .then(res=>res.json())
         .then((res)=> {
+            setStateToRerender(false)
             setEventInfoToPass(res)
             setFetchedEvents(res.map(eachEvent=> {
                 return {
@@ -81,14 +83,14 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
             })
             )
         })
-    }, [])
+    }, [stateToRerender])
 
     // console.log(eventInfoToPass)
     return(
-        <div>
+        <div className="calendar-page">
             <Row>
                 <Col xs={2}>
-                    <h1>Events Calendar</h1>
+                    <h1>Town Calendar</h1>
                     {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
                     :
                     (null)
@@ -115,11 +117,11 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     }} />
                 </Col>
             </Row>
-            {(currentUser && show) ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} />)
+            {(currentUser && show) ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} setStateToRerender={setStateToRerender} />)
             :
             <></>}
 
-            {(currentOrganizer && show) ? (<OrganizerEventModal show={show} setShow={setShow} handleClose={handleClose} />)
+            {(currentOrganizer && show) ? (<OrganizerEventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} currentOrganizer={currentOrganizer} />)
             :
             (<></>)
             }

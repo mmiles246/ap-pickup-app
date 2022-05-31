@@ -72,13 +72,13 @@ function UnAuthCalendarComponent () {
     }, [])
 
     return(
-        <div>
+        <div className="calendar-page">
             <Row>
-                <Col xs={2}>
-                    <h1>Events Calendar</h1>
+                {/* <Col xs={2}> */}
+                    <h1>Town Events</h1>
                     
-                </Col>
-                <Col xs={9}>
+                {/* </Col> */}
+                <Col xs={8}>
                     <Calendar 
                     localizer={localizer} 
                     events={fetchedEvents} 

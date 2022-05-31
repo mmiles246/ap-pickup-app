@@ -23,13 +23,13 @@ function App() {
             user.is_user||user.is_organizer ? setAuthChecked(true) : setAuthChecked(false)
           }))
         } else {
-          setAuthChecked(true)
+          setAuthChecked(false)
         }
         })
     }, []);
 
 
-    if(!authChecked) {return <div></div>}
+    // if(!authChecked) {return <div></div>}
 
     return (
       <BrowserRouter>
