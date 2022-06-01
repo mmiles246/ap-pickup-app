@@ -101,7 +101,7 @@
   .mobile-nav-toggle {
     position: absolute;
     z-index: 9999;
-    background: url(./imgs/menu-icon.png);
+    /* background: url(./imgs/menu-icon.png); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -119,11 +119,6 @@
 
 }
 
-@media (min-width: 35em) and (max-width: 55em) {
-  .nav-links {
-    background: red;
-  }
-}
 
 @media (min-width: 35em) {
   .primary-navigation {
@@ -263,7 +258,7 @@
   flex-basis: 57%;
   flex-grow: 1;
   padding: 40px 80px;
-  background-image: url('./imgs/waves.png');
+  /* background-image: url('./imgs/waves.png'); */
   background-size: contain;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -420,5 +415,28 @@
   background-color: #333;
 }
 
+#rsvp {
+  background-color: lightgreen;
+}
 
+#social {
+  color: antiquewhite;
+  background-color: indigo;
+}
+
+#arts {
+  background-color: lightblue;
+}
+
+#sports {
+  background-color: red;
+}
+
+#volunteer {
+  background-color: green;
+}
+
+.event-card {
+  margin: 0;
+}
 

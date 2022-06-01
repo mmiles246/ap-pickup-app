@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   get '/town_events', to: 'town_events#index'
 
+  get '/town_events/:id', to:'town_events#show' 
+
+  # get 'more-info/town_events', to: 'town_events#index'
+
   get '/town_event_page', to: 'organizers#show'
 
   get '/user_comments', to: 'user_comments#index'

@@ -17,7 +17,7 @@ class OrganizersController < ApplicationController
 
     def show
         current_organizer=Organizer.find_by_id(session[:organizer_id])
-        render json: current_organizer
+        render json: current_organizer, status: :found
     end
 
     def create 

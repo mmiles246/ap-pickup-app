@@ -55,17 +55,13 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         navigate(`/upcoming/${selectedEvent.id}`)
     }
 
-    // function handleSelectEvent (e) {
-    //     console.log(e)
-    //     setSelectedEvent(e)
-    //     navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
 
-    // }
 
     useEffect(()=> {
         fetch('/town_events')
         .then(res=>res.json())
         .then((res)=> {
+            console.log(res)
             setStateToRerender(false)
             setEventInfoToPass(res)
             setFetchedEvents(res.map(eachEvent=> {
@@ -77,6 +73,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     location: eachEvent.location,
                     event_description: eachEvent.event_description,
                     organizer: eachEvent.organizer,
+                    user_comments:eachEvent.user_comments,
+                    signups: eachEvent.signups,
                     id: eachEvent.id
                     
                 }
@@ -84,12 +82,32 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
             )
         })
     }, [stateToRerender])
+    
+    let current_user;
+    if (currentUser) {
+        current_user=currentUser
+    } else if (currentOrganizer) {
+        current_user=currentOrganizer
+    }
+    let signupsArray=[];
+    if (current_user.is_user) {
+    current_user.signups.forEach((signup)=> {
+        signupsArray.push(signup.town_event_id)
+    }) 
+}
+
+    let myEventsArray=[];
+    if(current_user.is_organizer) {
+        current_user.town_events.forEach((townEvent)=> {
+            myEventsArray.push(townEvent.id)
+        })
+    }
 
     // console.log(eventInfoToPass)
     return(
         <div className="calendar-page">
             <Row>
-                <Col xs={2}>
+                <Col xs={1}>
                     <h1>Town Calendar</h1>
                     {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
                     :
@@ -97,12 +115,26 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     }
                     {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
 
-                    {currentUser && currentUser.signups ? (<p>You have upcoming events!</p>)
+                    {currentUser && currentUser.signups ? (
+                        <div>
+                            <p>You have upcoming events!</p>
+                            <br></br>
+                            <h3>Color key</h3>
+                             <span id='rsvp'>Rsvp'd</span>
+                             <br></br>
+                            <span id='social'>Social type event</span>
+                            <br></br>
+                            <span id='arts'>Arts type event</span>
+                            <br></br>
+                            <span id='sports'>Sports type event</span>
+                            <br></br>
+                            <span id='volunteer'>Volunteer type event</span>
+                        </div>)
                     :
                     (null)
                     }
                 </Col>
-                <Col xs={9}>
+                <Col xs={8}>
                     <Calendar 
                     localizer={localizer} 
                     events={fetchedEvents} 
@@ -111,8 +143,25 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     endAccessor="end" 
                     style={{ height: 750, margin: "50px" }}
                     eventPropGetter={(e)=> {
-                        // console.log(e)
-                        const backgroundColor = e.allday ? 'green' : 'blue'
+                        let backgroundColor;
+                        if (current_user.is_organizer) {
+                            backgroundColor='blue'
+                        } else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
+                            backgroundColor='green'
+                        } else if (current_user.is_user&&signupsArray.includes(e.id)) {
+                                backgroundColor='lightgreen'
+                            } else if (e.type_of==='social') {
+                                backgroundColor='indigo'
+                            } else if (e.type_of==='sports') {
+                                backgroundColor='red'
+                            } else if (e.type_of === 'volunteer') {
+                                backgroundColor='green'
+                            } else if (e.type_of === 'arts') {
+                                backgroundColor='lightblue'
+                            }
+                           
+                            
+                        
                         return {style: {backgroundColor}}
                     }} />
                 </Col>

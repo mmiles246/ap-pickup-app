@@ -8,6 +8,7 @@ import EditEventModal from './EditEventModal'
 function OrganizedEventsPage ({currentOrganizer}) {
     const [eventPageInfo, setEventPageInfo]=useState([])
     const [eventToEdit, setEventToEdit]=useState(undefined)
+    const [stateToRerender, setStateToRerender]=useState(false)
     
     const [show, setShow] = useState(false);
 
@@ -19,8 +20,9 @@ function OrganizedEventsPage ({currentOrganizer}) {
         .then((res)=> {
             console.log(res)
             setEventPageInfo(res.town_events)
+            setStateToRerender(false)
         })
-    }, [])
+    }, [stateToRerender])
     console.log(eventPageInfo)
 
     return (
@@ -28,10 +30,10 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
             {eventPageInfo.map((eachEvent)=>{
                 return(
-                <EachEventCard  key={eachEvent.id} eachEvent={eachEvent} />
+                <EachEventCard key={eachEvent.id} eachEvent={eachEvent} />
                 )
             })}
-            <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit}/>
+            <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit} setStateToRerender={setStateToRerender}/>
 
         </>)
 }

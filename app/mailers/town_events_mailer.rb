@@ -7,6 +7,7 @@ class TownEventsMailer < ApplicationMailer
   #
   def town_event_posted(users)
     @greeting = "Hi"
+    @new_event=params[:new_event]
 
 
     mail(

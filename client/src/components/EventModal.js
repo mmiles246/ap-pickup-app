@@ -15,7 +15,7 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
 
     const eventArray = []
 
-    // console.log(selectedEvent)
+    console.log(selectedEvent)
 
     eventInfoToPass.forEach(town_event => {
       if (town_event.id === selectedEvent.id) {
@@ -87,7 +87,7 @@ console.log(handleRsvp)
       alert("Succsessfully canceled RSVP")
       setStateToRerender(true)
       setShow(false)
-      navigate('/upcoming')
+      // navigate('/upcoming')
     }
 
 

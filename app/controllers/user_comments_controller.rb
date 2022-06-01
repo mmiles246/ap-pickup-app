@@ -5,6 +5,12 @@ class UserCommentsController < ApplicationController
         render json: all_comments, status: :ok
     end
 
+    def show
+
+        event_comments=UserComment.find_by(town_event_id: params[:town_event_id])
+        render json: event_comments, status: :ok
+    end
+
 
     def create
         new_comment=UserComment.create(comment_params)

@@ -4,12 +4,12 @@ import CommentsSection from './CommentsSection';
 function MoreInfoPage () {
     const location = useLocation();
 
-    console.log(location.state.event)
-    console.log(location.state.currentUser)
+    // console.log(location.state.event)
+    // console.log(location.state.currentUser)
 
     const thisEvent= location.state.event
     const currentUser= location.state.currentUser
-    console.log(currentUser)
+    // console.log(currentUser)
 
     return (
         <div className='event-page-header'>
