@@ -38,20 +38,6 @@ class TownEventsController < ApplicationController
         end
     end
 
-    # def create
-    #     @town_event.new(town_event_params)
-    #     users_to_email=[]
-    #     users=User.all
-    #     users.map do |user|
-    #         if user.interested_in.include?(@town_event.type_of)
-    #             users_to_email<<user
-    #         end
-    #     end
-    #         if @town_event.save
-    #             TownEventsMailer.with(town_event: @town_event).town_event_posted(users_to_email).deliver_now
-    #             render json: @town_event, status: :created
-    #         end
-    #   end
 
     def update
         @town_event.update(town_event_params)
@@ -76,19 +62,9 @@ class TownEventsController < ApplicationController
         @town_event=TownEvent.find_by(id: params[:event_id])
     end
 
-    # def set_new_event
-    #     @new_event=TownEvent.find_by(id: params[:event_id])
-    # end
-
-    # def authorize_admin
-    #     organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == current_organizer.id)
-    #     render json: {error: "You don't have permission to perform this action"}, status: :forbidden
-    # end
 
     def authorize_admin
-        # byebug
         organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == @current_organizer.id)
-        # byebug
         render json: {error: "You don't have permission to perform this action"}, status: :forbidden unless organizer_can_modify
     end
 

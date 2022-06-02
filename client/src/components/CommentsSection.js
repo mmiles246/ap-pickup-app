@@ -13,36 +13,16 @@ function CommentsSection ({currentUser, thisEvent}) {
 
     console.log(thisEvent)
 
-    // useEffect(()=> {
-    //     fetch(`/town_events/${thisEvent.id}`)
-    //     .then(res=> res.json()
-    //     //     if(res.ok){
-    //     //         res.json().then(event => {
-    //     //             setFetchedUserComments(event)
-    //     //             setSubmitState(false)
-    //     //         })
-    //     //     }
-    //     // }
-    //     ).then(res=> console.log(res))
-        
-    // }, [] )
-
-    // useEffect(()=> {
-    //     fetch(`/town_events/${thisEvent.id}`)
-    //     .then(res=>res.json())
-    //     .then(response=>{
-    //         setFetchedUserComments(response.user_comments)
-    //     })
-    // }, [submitState])
-
     useEffect(()=> {
-        fetch('/user_comments')
+        fetch(`/more-info/${thisEvent.id}`)
         .then(res=>res.json())
-        .then((res) => {
+        .then((res)=> {
             console.log(res)
             setFetchedUserComments(res)
         })
     }, [submitState])
+
+
 
     console.log(fetchedUserComments)
     let thisEventComments=[];
@@ -56,7 +36,7 @@ function CommentsSection ({currentUser, thisEvent}) {
     console.log(thisEventComments)
 
     function commentsMapper (eachComment) {
-        return <UserCommentCard key={eachComment.id} eachComment={eachComment}  />
+        return <UserCommentCard key={eachComment.id} eachComment={eachComment} userThatCommented={eachComment.user.first_name}  />
     }
 
     function handleSubmit (e) {
@@ -73,14 +53,14 @@ function CommentsSection ({currentUser, thisEvent}) {
             })
         })
         setCommentText("")
-        setSubmitState(true)
+        setSubmitState(!submitState)
     }
 
     
 
     return(
         <div className='comment-section'>
-            <h1>Comments Will be Here</h1>
+            <h1>Comment Board</h1>
             {thisEventComments.map(commentsMapper)}
             <UserCommentForm handleSubmit={handleSubmit} setCommentText={setCommentText} commentText={commentText} currentUser={currentUser}/>
         </div>
@@ -91,4 +71,3 @@ function CommentsSection ({currentUser, thisEvent}) {
 export default CommentsSection;
 
 
-// .then(fetch('/event_comments').then(res=>res.json()).then((comments)=>setFetchedUserComments(comments)))

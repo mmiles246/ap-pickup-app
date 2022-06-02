@@ -1,11 +1,10 @@
-function UserCommentCard ({eachComment, currentUser}) {
+function UserCommentCard ({eachComment, userThatCommented}) {
 
     console.log(eachComment)
-    // const userThatCommented = eachComment.user.first_name
     return(
-        <div>
-            <h5>{eachComment.content}</h5>
-            {/* <span>{userThatCommented}</span> */}
+        <div className='comment-blurb'>
+            <h4>{eachComment.content}</h4>
+            <h6>{userThatCommented}</h6>
         </div>
     )
 }

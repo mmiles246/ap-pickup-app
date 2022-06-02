@@ -8,14 +8,14 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 
 
 .navbar {
   background: steelblue;
-  height: 120px;
+  height: 188px;
 
   align-items: center;
   justify-content: space-between;
@@ -221,22 +221,6 @@
   display: none;
 }
 
-/* .logged-in-user {
-  align-items: stretch;
-  text-align: end;
-  font-size: smaller;
-  display: inline-flex;
-  float: inline-end;
-  padding-left: 50%;
-} */
-
-/* *{
-  margin: 0;
-  padding: 0;
-  font-family: fantasy;
-  box-sizing: border-box;
-} */
-
 .event-page-header {
   width: 100%;
   min-height: 100vh;
@@ -251,6 +235,9 @@
   background-size: cover;
   background-position: center;
   padding: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
 }
 
@@ -258,11 +245,11 @@
   flex-basis: 57%;
   flex-grow: 1;
   padding: 40px 80px;
-  /* background-image: url('./imgs/waves.png'); */
-  background-size: contain;
+  background-image: url('./imgs/waves.png');
+  background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  color: green;
+  color:aquamarine; 
   /* opacity: 50%; */
 }
 
@@ -439,4 +426,97 @@
 .event-card {
   margin: 0;
 }
+
+.info-container {
+  width: 380px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+}
+
+.organizer-info-container{
+  width: 380px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+  font-weight: 600;
+  color: lightcyan;
+}
+
+.description-container {
+  width: 620px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+  font-weight: 600;
+}
+
+.comments-container {
+  width: 620px;
+  height: 700px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  font-weight: 600;
+  overflow-y: auto;
+
+}
+
+.organized-events-page {
+  display: inline-block;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  min-width: 0;
+
+}
+
+.each-event-card {
+  display: inline-flex;
+  align-items: center;
+  margin: 5rem;
+  min-width: 0;
+  /* justify-content: space-around;
+  justify-items: auto; */
+  /* overflow-x: hidden; */
+
+}
+
+.all-event-card {
+  align-items: center;
+  align-content: center;
+  display: block;
+  float: left;
+  padding: 5px;
+}
+
+.comment-section h1 {
+  text-decoration: underline;
+}
+
+.comment-blurb h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  
+}
+.comment-blurb h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+
+}
+
+
 

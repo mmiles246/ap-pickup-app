@@ -26,16 +26,19 @@ function OrganizedEventsPage ({currentOrganizer}) {
     console.log(eventPageInfo)
 
     return (
-        <>
-
-            {eventPageInfo.map((eachEvent)=>{
-                return(
-                <EachEventCard key={eachEvent.id} eachEvent={eachEvent} />
-                )
-            })}
+        <div className='organized-events-page'>
+            <br></br>
+            <h1>Your Upcoming events</h1>
+            <div className='each-event-card'>
+                {eventPageInfo.map((eachEvent)=>{
+                    return(
+                    <EachEventCard key={eachEvent.id} eachEvent={eachEvent} />
+                    )
+                })}
+            </div>
             <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit} setStateToRerender={setStateToRerender}/>
 
-        </>)
+        </div>)
 }
 
 export default OrganizedEventsPage;

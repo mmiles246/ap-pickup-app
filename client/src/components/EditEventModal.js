@@ -4,6 +4,7 @@ import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
 function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRerender}) {
+    console.log(eventToEdit)
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
         name: "",
@@ -45,7 +46,7 @@ function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRer
     function handleSubmit (e) {
         e.preventDefault()
         fetch(`/organize_event/${eventToEdit.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -56,7 +57,7 @@ function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRer
                 end_time: updatedEvent.end_time,
                 location: updatedEvent.location,
                 event_description: updatedEvent.event_description,
-                sponsors: updatedEvent.sponsors
+ 
                 // organizer_id: currentOrganizer.id
             })
         })

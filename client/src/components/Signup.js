@@ -74,6 +74,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
             })
         }
     })
+    alert('You have successfully created an account!')
     }
 
 

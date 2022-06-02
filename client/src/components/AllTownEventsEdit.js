@@ -20,8 +20,11 @@ function AllTownEventsEdit ({currentOrganizer}) {
     }
 
     return (
-        <div>   
-            {allEvents.map(eventsMapper)}
+        <div className='organized-events-page'> 
+            <div className='all-event-card'>
+                <h1>All Upcoming Events</h1>
+                {allEvents.map(eventsMapper)}
+            </div>  
         </div>)
 
 }
