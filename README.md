@@ -17,9 +17,11 @@ If you would like to run APB please fork and clone this repositroy to your local
 
 Open a terminal window and cd into the project folder.
 
-Next run the following commands:
+Next run the following command:
 
     $rails s
+
+You will need to open another terminal window and run the following:
 
     $npm start --prefix client
 
