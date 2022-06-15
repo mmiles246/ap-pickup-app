@@ -60,12 +60,19 @@
 
 .logout-bttn {
   width: 100px;
-  background-color: #282c34;
-  color: antiquewhite;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: aliceblue;
+  font-weight: 600;
+  text-decoration: underline;
   text-align: center;
-  align-items: center;
-  border: 0;
+  
+  box-shadow: 0 0 5px #333;
 
+}
+
+.logout-bttn:hover {
+  box-shadow: 2px 2px 5px #555;
+  background-color: #7799d4;
 }
 
 .flex {
@@ -113,9 +120,7 @@
     display: block;
   }
 
-  .mobile-nav-toggle[aria-expanded="true"] {
-    /* background-image: url('./imgs/tillie.png'); */
-  }
+  
 
 }
 
@@ -517,6 +522,33 @@
   float: none;
 
 }
+
+.contact-card {
+  display: inline-block;
+}
+
+.event-form{
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  padding: 150px;
+  margin-top: 50px;
+  border-radius: 10px;
+  border: #333;
+  box-shadow: 0 0 4px #333;
+  background-color: #ddd;
+  height: min-content;
+}
+
+/* .organize-event-page {
+  background-image: url('./imgs/tillie.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+} */
 
 
 

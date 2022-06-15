@@ -134,7 +134,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     (null)
                     }
                 </Col>
-                <Col xs={8}>
+                <Col xs={9}>
                     <Calendar 
                     localizer={localizer} 
                     events={fetchedEvents} 

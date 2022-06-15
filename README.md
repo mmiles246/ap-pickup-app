@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to APB, Asbury Park Bulletin!
 
-Things you may want to cover:
+APB is built using a stack:
+    -Rails(backend)
+    -React.js(frontend)
+        *React-big-calendar
+        *React-bootstrap
+        *Action mailer
 
-* Ruby version
+If you would like to run APB please fork and clone this repositroy to your local machine.
+Open a terminal window and cd into the project folder.
+Next run the following commands:
+    *$rails s
 
-* System dependencies
+    *$npm start --prefix client
 
-* Configuration
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

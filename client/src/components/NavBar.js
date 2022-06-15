@@ -31,20 +31,20 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
                 <ul className="primary-navigation flex" data-visible='false' id='primary-navigation'>
                     
                     <li className='nav-links'>
-                        <Link to='/'>
+                        <Link to='/' style={{color: '#333'}}>
                             <span>Home</span>
                         </Link>
                     </li>
                     <li className='nav-links'>
-                        <Link to='/upcoming' currentUser={currentUser}>
+                        <Link to='/upcoming ' style={{color: '#333'}} currentUser={currentUser}>
                             <span>Upcoming Events</span>
                         </Link>
                     </li>
-                    {currentOrganizer ? (<li className='nav-links'><Link to='organize-event'><span>Organize Event</span></Link></li>)
+                    {currentOrganizer ? (<li className='nav-links'><Link to='organize-event' style={{color: '#333'}}><span>Organize Event</span></Link></li>)
                     :
                     (<></>)}
                     <li className='nav-links'>
-                        <Link to='/contactus'>
+                        <Link to='/contactus' style={{color: '#333'}}>
                         <span>Contact Us</span>
                         </Link>
                     </li>
@@ -52,7 +52,7 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
                     :
                     (<li className='nav-links'>
                         <div id='signup-bttn'>
-                            <Link to='/login'>
+                            <Link to='/login' style={{color: '#aliceblue'}}>
                                 <span>Login</span>
                             </Link>
                         </div>

@@ -1,11 +1,17 @@
+import {Card} from 'react-bootstrap'
+
 function ContactPage () {
 
     return (
-        <div>
-            <h1>Contact</h1>
-            <br></br>
-            <h3>Email us @</h3>
-            <p>admin@appickup.com</p>
+        <div className='contact-card'>
+            <Card>
+                <Card.Body>
+                    <Card.Title>Contact</Card.Title>
+                    <Card.Subtitle>Email us @</Card.Subtitle>
+                    <Card.Text>admin@appickup.com</Card.Text>
+                </Card.Body>
+            </Card>
+
         </div>
     )
 

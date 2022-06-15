@@ -15,11 +15,17 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
       }})
     }
 
+    function editClick () {
+        navigate()
+    }
+
     useEffect(()=>{
         if (selectedEvent.organizer.id === currentOrganizer.id) {
             setWhosEvent(true)
         } 
     }, [])
+
+    console.log(whosEvent)
 
 
         let modalBody; 
@@ -31,12 +37,10 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
 
         let modalBttn;
         if (!whosEvent&&currentOrganizer.admin) {
-            modalBttn=<Button variant='secondary'>Edit Event</Button>
+            modalBttn=<Button variant='primary'>Edit Event</Button>
         } else if (whosEvent) {
-            modalBttn=<Button variant='secondary'>Edit Event</Button>
-        } else {
-            modalBttn=<Button onClick={seeEventInfoClick} variant='secondary'>See event details.</Button>
-        }
+            modalBttn=<Button variant='primary'>Edit Event</Button>
+        } else {modalBttn=<Button>Return to Calendar</Button>}
     
     return (
         <div>
@@ -54,6 +58,7 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
                     {/* <Button variant="secondary" >
                     Login Here
                     </Button> */}
+                    <Button onClick={seeEventInfoClick} variant='secondary'>See event details.</Button>
                 </Modal.Footer>
             </Modal>
         </div>
