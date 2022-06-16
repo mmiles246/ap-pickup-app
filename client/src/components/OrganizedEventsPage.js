@@ -18,12 +18,6 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
     const handleClose = () => setShow(false);
 
-    function selectFilter (e) {
-        console.log(e)
-        setFilterState(e.target.value)
-    }
-
-    
 
     useEffect(()=>{
         fetch('/town_event_page')
@@ -93,9 +87,9 @@ function OrganizedEventsPage ({currentOrganizer}) {
             name='fiter'
             onChange={filterFunction}
             >
-                <option value='start_time'>Date</option>
-                <option value='type_of'>Event Type</option>
-                <option value='rsvps'>RSVPs</option>
+                <option value='start_time'>Event Type</option>
+                <option value='type_of'>RSVPs</option>
+                <option value='rsvps'>Date</option>
             </select>
             <div className='each-event-card'>
                 {eventPageInfo.map((eachEvent)=>{

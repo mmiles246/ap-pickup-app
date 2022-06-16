@@ -26,7 +26,7 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
             <img className='logo' src={appLogo}></img>
         </div>
 
-        <button onClick={navToggle} className='mobile-nav-toggle' aria-controls='primary-navigation' aria-expanded='false'><span className='sr-only'>Menu</span></button>
+        <button onClick={navToggle} className='mobile-nav-toggle' aria-controls='primary-navigation' aria-expanded='false'><span>Menu</span></button>
         <nav>
                 <ul className="primary-navigation flex" data-visible='false' id='primary-navigation'>
                     
