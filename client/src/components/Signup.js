@@ -68,6 +68,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
             res.json().then(user => {
                 setCurrentUser(user)
                 navigate('/')
+                alert('You have successfully created an account!')
             })
         } else {
             res.json().then(errors=> {
@@ -75,7 +76,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
             })
         }
     })
-    alert('You have successfully created an account!')
+    alert("Please fill out the form to create an account.")
     }
 
 

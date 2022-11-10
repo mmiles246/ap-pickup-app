@@ -106,35 +106,47 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     // console.log(eventInfoToPass)
     return(
         <div className="calendar-page">
-            <Row>
-                <Col xs={1}>
-                    <h1>Town Calendar</h1>
-                    {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
-                    :
-                    (null)
-                    }
-                    {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
+            {/* <Row> */}
+                {/* <Col xs={1}> */}
+                    <div className='calendar-header'>
+                        <div className='calendar-header-title'>
+                            <h1>Town Calendar</h1>
+                            {currentUser && currentUser.signups ? <p>You have upcoming events!</p> : ''}
+                        </div>
+                        <br></br>
+                        {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
+                        :
+                        <></>
+                        }
+                        {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
+                        <br></br>
+                        <div className='event-color-key'>
+                            {currentUser && currentUser.signups ? (
+                                <div>
+                                
+                                {/* <br></br> */}
+                                <h3>Color key</h3>
+                                <span id='rsvp'>Rsvp'd</span>
+                                {/* <br></br> */}
+                                <span id='social'>Social type event</span>
+                                {/* <br></br> */}
+                                <span id='arts'>Arts type event</span>
+                                {/* <br></br> */}
+                                <span id='sports'>Sports type event</span>
+                                {/* <br></br> */}
+                                <span id='volunteer'>Volunteer type event</span>
+                                </div>)
+                                :
+                                <></> }
+                        </div>
+                    </div>
+                    
 
-                    {currentUser && currentUser.signups ? (
-                        <div>
-                            <p>You have upcoming events!</p>
-                            <br></br>
-                            <h3>Color key</h3>
-                             <span id='rsvp'>Rsvp'd</span>
-                             <br></br>
-                            <span id='social'>Social type event</span>
-                            <br></br>
-                            <span id='arts'>Arts type event</span>
-                            <br></br>
-                            <span id='sports'>Sports type event</span>
-                            <br></br>
-                            <span id='volunteer'>Volunteer type event</span>
-                        </div>)
-                    :
-                    (null)
-                    }
-                </Col>
-                <Col xs={9}>
+                    
+                   
+                {/* </Col> */}
+                <div className='calendar-component'>
+                    {/* <Col xs={9}> */}
                     <Calendar 
                     localizer={localizer} 
                     events={fetchedEvents} 
@@ -163,9 +175,11 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                             
                         
                         return {style: {backgroundColor}}
-                    }} />
-                </Col>
-            </Row>
+                        }} />
+                    {/* </Col> */}
+                </div>
+                
+            {/* </Row> */}
             {(currentUser && show) ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} setStateToRerender={setStateToRerender} />)
             :
             <></>}

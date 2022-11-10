@@ -11,10 +11,10 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
 
     function navToggle (e) {
         const visibility = primaryNav.getAttribute('data-visible')
-        if (visibility==='false') {
-        primaryNav.setAttribute('data-visible', true)
-        mobileToggle.setAttribute('aria-expanded', true )
-        } else if (visibility==='true') {
+        if (visibility === 'false') {
+            primaryNav.setAttribute('data-visible', true)
+            mobileToggle.setAttribute('aria-expanded', true )
+            } else if (visibility ==='true') {
             primaryNav.setAttribute('data-visible', false)
             mobileToggle.setAttribute('aria-expanded', false )
         }

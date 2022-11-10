@@ -13,7 +13,7 @@ skip_before_action :confirm_authentication, only: [:create]
     # end 
 
     def create
-        # byebug
+        byebug
         user=User.create(user_params)
         if user.valid?
             session[:user_id]=user.id
