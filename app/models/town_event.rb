@@ -11,4 +11,14 @@ class TownEvent < ApplicationRecord
 
   has_many :organizer_comments
   has_many :organizer_event_comments, through: :organizer_comments, source: :organizer
+
+
+  def signups_user_ids
+    user_ids=Array.new
+    users.each do |user|
+      user_ids.push(user.id)
+    end
+    user_ids
+  end
+
 end

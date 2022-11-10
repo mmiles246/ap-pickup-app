@@ -1,5 +1,5 @@
 class TownEventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :type_of, :start_time, :end_time, :location, :event_description, :sponsors, :signups, :user_comments
+  attributes :id, :name, :type_of, :start_time, :end_time, :location, :event_description, :sponsors, :signups, :user_comments, :signups_user_ids
   has_one :organizer
   has_many :signups
   has_many :user_comments

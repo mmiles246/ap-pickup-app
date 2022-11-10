@@ -19,6 +19,7 @@ function CommentsSection ({currentUser, thisEvent}) {
         .then((res)=> {
             console.log(res)
             setFetchedUserComments(res)
+            setSubmitState(false)
         })
     }, [submitState])
 
@@ -53,7 +54,7 @@ function CommentsSection ({currentUser, thisEvent}) {
             })
         })
         setCommentText("")
-        setSubmitState(!submitState)
+        setSubmitState(true)
     }
 
     

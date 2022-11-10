@@ -52,8 +52,11 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         setSelectedEvent(e)
         setShow(true)
         // console.log(selectedEvent.id)
-        navigate(`/upcoming/${selectedEvent.id}`)
+        // navigate(`/upcoming/${selectedEvent.id}`)
     }
+
+    let myEventsArray=[];
+    let signupsArray=[];
 
 
 
@@ -75,11 +78,25 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     organizer: eachEvent.organizer,
                     user_comments:eachEvent.user_comments,
                     signups: eachEvent.signups,
-                    id: eachEvent.id
+                    id: eachEvent.id,
+                    signup_ids: eachEvent.signups_user_ids
                     
                 }
             })
             )
+            // let myEventsArray=[];
+            // if(current_user.is_organizer) {
+            //     current_user.town_events.forEach((townEvent)=> {
+            //     myEventsArray.push(townEvent.id)
+            //     })
+            //     console.log(myEventsArray)
+            // }
+            // if (current_user.is_user) {
+            //     current_user.signups.forEach((signup)=> {
+            //     signupsArray.push(signup.town_event_id)
+            //     })
+            //     console.log(signupsArray)
+            // }
         })
     }, [stateToRerender])
     
@@ -89,19 +106,14 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     } else if (currentOrganizer) {
         current_user=currentOrganizer
     }
-    let signupsArray=[];
+    // let signupsArray=[];
     if (current_user.is_user) {
     current_user.signups.forEach((signup)=> {
         signupsArray.push(signup.town_event_id)
     }) 
 }
 
-    let myEventsArray=[];
-    if(current_user.is_organizer) {
-        current_user.town_events.forEach((townEvent)=> {
-            myEventsArray.push(townEvent.id)
-        })
-    }
+    
 
     // console.log(eventInfoToPass)
     return(
@@ -124,16 +136,16 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                             {currentUser && currentUser.signups ? (
                                 <div>
                                 
-                                {/* <br></br> */}
+                                <br></br>
                                 <h3>Color key</h3>
                                 <span id='rsvp'>Rsvp'd</span>
-                                {/* <br></br> */}
+                                <br></br>
                                 <span id='social'>Social type event</span>
-                                {/* <br></br> */}
+                                <br></br>
                                 <span id='arts'>Arts type event</span>
-                                {/* <br></br> */}
+                                <br></br>
                                 <span id='sports'>Sports type event</span>
-                                {/* <br></br> */}
+                                <br></br>
                                 <span id='volunteer'>Volunteer type event</span>
                                 </div>)
                                 :
@@ -160,7 +172,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                             backgroundColor='blue'
                         } else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
                             backgroundColor='green'
-                        } else if (current_user.is_user&&signupsArray.includes(e.id)) {
+                        } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
                                 backgroundColor='lightgreen'
                             } else if (e.type_of==='social') {
                                 backgroundColor='indigo'
@@ -171,9 +183,6 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                             } else if (e.type_of === 'arts') {
                                 backgroundColor='lightblue'
                             }
-                           
-                            
-                        
                         return {style: {backgroundColor}}
                         }} />
                     {/* </Col> */}
