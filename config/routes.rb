@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :users
   resources :organizers
 
+
+  get '/dummy-route/:id', to: 'organizer_comments#show'
+
   get '/logged_in', to: 'application#user_or_organizer'
 
   get '/users', to: 'users#index'
@@ -37,6 +40,8 @@ Rails.application.routes.draw do
   post 'event_rsvp', to: 'signups#create'
 
   post 'event_comments', to: 'user_comments#create'
+
+  post '/organizer-event-comments', to: 'organizer_comments#create'
 
   patch '/organize_event/:event_id', to: 'town_events#update'
 

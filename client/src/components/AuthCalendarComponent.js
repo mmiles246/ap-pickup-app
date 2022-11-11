@@ -77,6 +77,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     event_description: eachEvent.event_description,
                     organizer: eachEvent.organizer,
                     user_comments:eachEvent.user_comments,
+                    organizer_comments: eachEvent.organizer_comments,
                     signups: eachEvent.signups,
                     id: eachEvent.id,
                     signup_ids: eachEvent.signups_user_ids
@@ -135,7 +136,6 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                         <div className='event-color-key'>
                             {currentUser && currentUser.signups ? (
                                 <div>
-                                
                                 <br></br>
                                 <h3>Color key</h3>
                                 <span id='rsvp'>Rsvp'd</span>

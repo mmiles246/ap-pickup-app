@@ -32,7 +32,7 @@ class TownEventsController < ApplicationController
         if new_town_event.valid?
             render json: new_town_event
             TownEventsMailer.with(new_event: @new_event).town_event_posted(users_to_email).deliver_now
-            byebug
+            # byebug
         else
             new_town_event.errors.full_messages
         end

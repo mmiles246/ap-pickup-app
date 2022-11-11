@@ -21,15 +21,15 @@ function AuthenticatedApp ({currentUser, setCurrentUser, setCurrentOrganizer, cu
             <Route path='/' element={(<NavBar setCurrentUser={setCurrentUser} currentUser={currentUser} currentOrganizer={currentOrganizer} setCurrentOrganizer={setCurrentOrganizer} />)} >
                 <Route index element={<AuthenticatedHome />} />
                 <Route path='upcoming' element={<AuthCalendarComponent currentUser={currentUser} currentOrganizer={currentOrganizer} />} >
-                    <Route path=':event_id' />
+                    <Route path=':event_id' element={<EditEventPage currentOrganizer={currentOrganizer} />}/>
                     {/* <Route path='all-events' element={<AllTownEventsEdit currentOrganizer={currentOrganizer} />} /> */}
                 </Route>
-                <Route path='more-info/:event_id' element={<MoreInfoPage />} />
+                <Route path='more-info/:event_id' element={<MoreInfoPage currentOrganizer={currentOrganizer} currentUser={currentUser} />} />
                 <Route path='my-organized-events' element={<OrganizedEventsPage currentOrganizer={currentOrganizer} />} >
                     <Route path=':event_id' element={<EditEventPage currentOrganizer={currentOrganizer} />} />
                 </Route>
                 <Route path='all-events' element={<AllTownEventsEdit currentOrganizer={currentOrganizer} />} >
-                    <Route path=':event_id' element={<EditEventPage />} />
+                    <Route path=':event_id' element={<EditEventPage currentOrganizer={currentOrganizer} />} />
                 </Route>
                 <Route path='contactus' element={<ContactPage />} />
                 <Route path="login" element={<UserLogin/>} />

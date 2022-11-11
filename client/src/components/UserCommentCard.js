@@ -1,6 +1,4 @@
-function UserCommentCard ({eachComment, userThatCommented}) {
-
-    console.log(eachComment)
+function UserCommentCard ({eachComment, userThatCommented, user}) {
     return(
         <div className='comment-blurb'>
             <h4>{eachComment.content}</h4>

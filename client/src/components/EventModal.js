@@ -75,6 +75,7 @@ console.log(handleRsvp)
       navigate(`/more-info/${selectedEvent.id}`, {state: {
         event: selectedEvent,
         currentUser: currentUser,
+        currentOrganizer: currentOrganizer
       }})
     }
 

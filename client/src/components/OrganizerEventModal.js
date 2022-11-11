@@ -4,7 +4,13 @@ import {useEffect, useState} from 'react'
 import MoreInfoPage from './MoreInfoPage'
 
 function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganizer}) {
-    const [whosEvent, setWhosEvent]=useState(false)
+    const [whosEvent, setWhosEvent]=useState(() => {
+        if (selectedEvent.organizer.id === currentOrganizer.id) {
+            return true;
+        }
+        return false;
+    })
+
 
     const navigate=useNavigate()
 
@@ -16,16 +22,8 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
     }
 
     function editClick () {
-        navigate()
+        navigate(`/my-organized-events/${selectedEvent.id}`)
     }
-
-    useEffect(()=>{
-        if (selectedEvent.organizer.id === currentOrganizer.id) {
-            setWhosEvent(true)
-        } 
-    }, [])
-
-    console.log(whosEvent)
 
 
         let modalBody; 
@@ -37,9 +35,9 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
 
         let modalBttn;
         if (!whosEvent&&currentOrganizer.admin) {
-            modalBttn=<Button variant='primary'>Edit Event</Button>
+            modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
         } else if (whosEvent) {
-            modalBttn=<Button variant='primary'>Edit Event</Button>
+            modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
         } else {modalBttn=<Button>Return to Calendar</Button>}
     
     return (
