@@ -29,7 +29,6 @@ function CommentsSection ({currentUser, thisEvent, currentOrganizer}) {
 
 
 
-    console.log(fetchedUserComments)
     let thisEventComments=[];
     fetchedUserComments.forEach((eachComment)=> {
         if (eachComment.town_event_id === thisEvent.id) {
@@ -53,7 +52,7 @@ function CommentsSection ({currentUser, thisEvent, currentOrganizer}) {
     }
 
     function organizerCommentMapper (eachComment) {
-        return <OrganizerCommentCard key={eachComment.id} eachComment={eachComment.content} organizerThatCommented={eachComment.organizer} comment={eachComment} />
+        return <OrganizerCommentCard key={eachComment.id} eachComment={eachComment.content} organizerThatCommented={eachComment.organizer.first_name} comment={eachComment} />
     }
 
     function userCommentSubmit (e) {
@@ -93,11 +92,13 @@ function CommentsSection ({currentUser, thisEvent, currentOrganizer}) {
     
 
     return(
-        <div className='comment-section'>
-            <h1>Comment Board</h1>
-            {/* {organizerComments.map((comment)=>{ return <OrganizerCommentCard key={comment.id} eachComment={comment.content} organizerThatCommented={comment.organizer.first_name}/>})} */}
-            {/* {organizerComments.map(organizerCommentMapper)} */}
-            {thisEventComments.map(newCommentMapper)}
+        <div className='comment-board'>
+            <div className='comment-header'>
+                <h1>Comment Board</h1>
+            </div>
+            <div className='comments'>
+                {thisEventComments.map(newCommentMapper)}
+            </div>
             <UserCommentForm userCommentSubmit={userCommentSubmit} organizerCommentSubmit={organizerCommentSubmit} setCommentText={setCommentText} commentText={commentText} currentUser={currentUser}/>
         </div>
     )

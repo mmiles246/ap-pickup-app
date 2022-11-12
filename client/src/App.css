@@ -382,10 +382,11 @@
   top: 2px;
 }
 
-.comment-section {
+/* .comment-section {
+  position: relative;
   border: #282c34;
   border-style: dotted;
-}
+} */
 
 .comment-textarea {
   width: 500px;
@@ -546,7 +547,7 @@
   text-decoration: underline;
 }
 
-.comment-blurb h4 {
+/* .comment-blurb h4 {
   width: auto;
   height: auto;
   border-radius: 25px;
@@ -559,7 +560,7 @@
   float: unset;
   float: none;
 
-}
+} */
 
 .contact-card-container {
   top: auto;
@@ -598,7 +599,91 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
 } */
 
+/* ////////////////////////////////////////////////////////*/
+/* CommentSection*/
+/* ////////////////////////////////////////////////////////*/
 
+.comment-board {
+  position: relative;
+  border: #282c34;
+  border-style: dotted;
+}
 
+.comments {
+  position: relative;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* OrganizerCommentCard*/
+/* ////////////////////////////////////////////////////////*/
+
+.pinned-comment h4 {
+  /* position: absolute; */
+  /* top: 0; */
+  /* display: block; */
+  /* padding: 10% 2% 2% 2%; */
+  /* justify-content: space-around; */
+  /* width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: #89FC00;
+  box-shadow: 0 0 17px #333;
+  color: #01161E; */
+}
+
+.comment-body {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: #89FC00;
+  box-shadow: 0 0 17px #333;
+  color: #01161E;
+  display: flex;
+}
+
+.commenter {
+  display: flexbox;
+  float: unset;
+  float: none;
+}
+
+.pinned-comment h6 {
+  /* display: flexbox;
+  float: unset;
+  float: none; */
+}
+
+.other-organizer-comment h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+}
+
+.other-organizer-comment h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* UserCommentCard*/
+/* ////////////////////////////////////////////////////////*/
+
+.comment-blurb h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  
+}
+.comment-blurb h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+}

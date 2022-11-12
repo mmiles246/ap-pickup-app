@@ -15,7 +15,6 @@ class UserCommentsController < ApplicationController
         all_organizer_comments=OrganizerComment.all
         event_comments=[];
         town_event=TownEvent.find_by(id: params[:event_id])
-        # if all_user_comments
             all_user_comments.each do |comment|
                 if comment.town_event_id===town_event.id
                     event_comments<<comment
@@ -26,9 +25,6 @@ class UserCommentsController < ApplicationController
                     event_comments<<comment
                 end
             end
-            # end
-            # end
-        # end
         render json: event_comments, status: :ok, serilaizer: UserCommentSerializer
     end
 
