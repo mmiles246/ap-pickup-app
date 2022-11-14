@@ -35,6 +35,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     const [fetchedEvents, setFetchedEvents] = useState([]);
     const [eventInfoToPass, setEventInfoToPass]=useState([])
     const [stateToRerender, setStateToRerender]=useState(false)
+    const [eventsFilter, setEventsFilter] = useState('all events')
 
     const navigate = useNavigate()
 
@@ -85,19 +86,6 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                 }
             })
             )
-            // let myEventsArray=[];
-            // if(current_user.is_organizer) {
-            //     current_user.town_events.forEach((townEvent)=> {
-            //     myEventsArray.push(townEvent.id)
-            //     })
-            //     console.log(myEventsArray)
-            // }
-            // if (current_user.is_user) {
-            //     current_user.signups.forEach((signup)=> {
-            //     signupsArray.push(signup.town_event_id)
-            //     })
-            //     console.log(signupsArray)
-            // }
         })
     }, [stateToRerender])
     
@@ -114,7 +102,21 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     }) 
 }
 
-    
+function filterEvents (state, fetchedEvents) {
+                        
+    if(state === 'all events') {
+        return fetchedEvents
+    } else if(state === 'social') {
+        console.log(fetchedEvents.filter(event => event.type_of==='social'))
+        return fetchedEvents.filter(event => event.type_of==='social')
+    } else if(state === 'arts') {
+        return fetchedEvents.filter(event => event.type_of==='arts')
+    } else if(state === 'sports') {
+        return fetchedEvents.filter(event => event.type_of==='sports')
+    } else if(state === 'volunteer') {
+        return fetchedEvents.filter(event => event.type_of==='volunteer')
+    }
+}
 
     // console.log(eventInfoToPass)
     return(
@@ -125,6 +127,15 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                         <div className='calendar-header-title'>
                             <h1>Town Calendar</h1>
                             {currentUser && currentUser.signups ? <p>You have upcoming events!</p> : ''}
+                        </div>
+                        <div className='events-filter'>
+                            <select type='select' name='event-filter' onChange={(e)=>{setEventsFilter(e.target.value)}}>
+                                <option value='all events'>All Events</option>
+                                <option value='social'>Social</option>
+                                <option value='arts'>Arts</option>
+                                <option value='sports'>Sports</option>
+                                <option value='volunteer'>Volunteer</option>
+                            </select>
                         </div>
                         <br></br>
                         {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
@@ -154,6 +165,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     </div>
                     
 
+
+                    
                     
                    
                 {/* </Col> */}
@@ -161,7 +174,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     {/* <Col xs={9}> */}
                     <Calendar 
                     localizer={localizer} 
-                    events={fetchedEvents} 
+                    events={filterEvents(eventsFilter, fetchedEvents)} 
                     onSelectEvent={handleShow} 
                     startAccessor="start" 
                     endAccessor="end" 

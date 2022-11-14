@@ -126,7 +126,12 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                     placeholder='Type of Event'
                     value={updatedEvent.type_of}
                     name='type_of'
-                    onChange={handleInputChange}
+                    onChange={(e)=>{
+                        console.log(updatedEvent.type_of)
+                        setUpdatedEvent({
+                        ...updatedEvent,
+                        'type_of': e.target.value
+                    })}}
                     >
                         <option value='volunteer'>Volunteer</option>
                         <option value='sports'>Sports</option>

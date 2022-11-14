@@ -41,6 +41,7 @@ class TownEventsController < ApplicationController
 
     def update
         @town_event.update(town_event_params)
+        byebug
         render json: @town_event, status: :ok, serializer: EditEventSerializerSerializer
     end
 
