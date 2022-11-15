@@ -1,10 +1,3 @@
-!!! This branch is currently not the most up to date version of this application !!!
-
-<<<<<<< HEAD
-If you would like to see/use the most recent verizon of APB please see the 'furthurwork' branch. Instructions for running the application are listed in the READ.me of that branch. 
-
-I will update here when I have merged these branches.
-=======
 Welcome to APB, Asbury Park Bulletin!
 
 APB is built using a stack:
@@ -52,5 +45,3 @@ After launching the rails server, open an additional terminal window and run the
 
 
 Hope you enjoy APB!
-
->>>>>>> furthurWork
