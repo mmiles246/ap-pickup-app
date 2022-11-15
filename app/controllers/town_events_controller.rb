@@ -10,55 +10,38 @@ class TownEventsController < ApplicationController
     end
 
     def show
-        # town_event=TownEvent.find_by(id: params[:id])
-        render json: @town_event, status: :found
+        town_event=TownEvent.find_by_id(params[:id])
+        # byebug
+        render json: town_event, status: :found
     end
 
-    # def create
-    #     new_town_event=TownEvent.create(town_event_params)
-    #     render json: new_town_event, status: :created 
-    # end
 
     def create
         # byebug
-
         new_town_event=logged_in_organizer=Organizer.find_by(id: session[:organizer_id])
-
         if logged_in_organizer
             new_town_event=logged_in_organizer.town_events.create(town_event_params)
-
-
             end
-
             users_to_email=[]
             users=User.all
-
             users.map do |user|
                 if user.interested_in.include?(new_town_event.type_of)
                     users_to_email<<user
-       
                 end
-            
             end
-
         if new_town_event.valid?
             render json: new_town_event
-            TownEventsMailer.town_event_posted(users_to_email).deliver_now
+            TownEventsMailer.with(new_event: @new_event).town_event_posted(users_to_email).deliver_now
+            # byebug
         else
             new_town_event.errors.full_messages
         end
-    
-        
-        
-    
-
     end
 
+
     def update
-        # byebug
-        # event_to_update=TownEvent.find_by(id: params[:event_id])
-        # byebug
         @town_event.update(town_event_params)
+        byebug
         render json: @town_event, status: :ok, serializer: EditEventSerializerSerializer
     end
 
@@ -80,15 +63,9 @@ class TownEventsController < ApplicationController
         @town_event=TownEvent.find_by(id: params[:event_id])
     end
 
-    # def authorize_admin
-    #     organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == current_organizer.id)
-    #     render json: {error: "You don't have permission to perform this action"}, status: :forbidden
-    # end
 
     def authorize_admin
-        # byebug
         organizer_can_modify = current_organizer.admin? || (@town_event.organizer_id == @current_organizer.id)
-        # byebug
         render json: {error: "You don't have permission to perform this action"}, status: :forbidden unless organizer_can_modify
     end
 

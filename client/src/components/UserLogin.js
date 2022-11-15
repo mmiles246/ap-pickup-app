@@ -1,9 +1,13 @@
 import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
+import {Toast} from 'react-bootstrap'
 
 function UserLogin ({setCurrentUser, currentUser}) {
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
+    const [errorState, setErrorState]=useState([])
+    const [showA, setShowA] = useState(false);
+    const toggleShowA = () => setShowA(!showA);
 
     const navigate=useNavigate()
 
@@ -25,14 +29,28 @@ function UserLogin ({setCurrentUser, currentUser}) {
                 })
             } else {
                 res.json().then(errors=> {
-                    console.error(errors)
+                    console.log(errors)
+                    setErrorState(errors)
+                    setShowA(true)
                 })
             }
         })
     }
 
+
+
     return (
         <div className='login-page'>
+            {(errorState) ? 
+                (<Toast show={showA} onClose={toggleShowA}>
+                    <Toast.Header>
+                    Invalid
+                    </Toast.Header>
+                    <Toast.Body>{errorState.error}</Toast.Body>
+              </Toast>)
+                :
+                (<></>)
+            }
             <div className='login-container'>
                 <div className='login-header'>
                     <h1>Login</h1>

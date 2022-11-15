@@ -8,14 +8,14 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 
 
 .navbar {
   background: steelblue;
-  height: 120px;
+  height: 188px;
 
   align-items: center;
   justify-content: space-between;
@@ -32,6 +32,7 @@
 
   background: hsl(0 0% 100% / 0.1);
   backdrop-filter: blur(1rem);
+
 
 }
 
@@ -60,12 +61,19 @@
 
 .logout-bttn {
   width: 100px;
-  background-color: #282c34;
-  color: antiquewhite;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: aliceblue;
+  font-weight: 600;
+  text-decoration: underline;
   text-align: center;
-  align-items: center;
-  border: 0;
+  
+  box-shadow: 0 0 5px #333;
 
+}
+
+.logout-bttn:hover {
+  box-shadow: 2px 2px 5px #555;
+  background-color: #7799d4;
 }
 
 .flex {
@@ -101,7 +109,7 @@
   .mobile-nav-toggle {
     position: absolute;
     z-index: 9999;
-    background: url(./imgs/menu-icon.png);
+    /* background: url(./imgs/menu-icon.png); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -113,17 +121,10 @@
     display: block;
   }
 
-  .mobile-nav-toggle[aria-expanded="true"] {
-    /* background-image: url('./imgs/tillie.png'); */
-  }
+  
 
 }
 
-@media (min-width: 35em) and (max-width: 55em) {
-  .nav-links {
-    background: red;
-  }
-}
 
 @media (min-width: 35em) {
   .primary-navigation {
@@ -226,22 +227,6 @@
   display: none;
 }
 
-/* .logged-in-user {
-  align-items: stretch;
-  text-align: end;
-  font-size: smaller;
-  display: inline-flex;
-  float: inline-end;
-  padding-left: 50%;
-} */
-
-/* *{
-  margin: 0;
-  padding: 0;
-  font-family: fantasy;
-  box-sizing: border-box;
-} */
-
 .event-page-header {
   width: 100%;
   min-height: 100vh;
@@ -256,6 +241,9 @@
   background-size: cover;
   background-position: center;
   padding: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
 }
 
@@ -264,10 +252,10 @@
   flex-grow: 1;
   padding: 40px 80px;
   background-image: url('./imgs/waves.png');
-  background-size: contain;
+  background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  color: green;
+  color:aquamarine; 
   /* opacity: 50%; */
 }
 
@@ -394,10 +382,11 @@
   top: 2px;
 }
 
-.comment-section {
+/* .comment-section {
+  position: relative;
   border: #282c34;
   border-style: dotted;
-}
+} */
 
 .comment-textarea {
   width: 500px;
@@ -405,14 +394,7 @@
 
 
 
-.calendar-page {
-  /* background-image: url('./imgs/tillie.png'); */
-  /* height: 80vh;
-  width: 100vh; */
-  /* display: flex; */
-  width: min-content;
-  height: 100vh;
-}
+
 
 
 .ask-to-sign-in {
@@ -422,3 +404,349 @@
 
 
 
+.event-card {
+  margin: 0;
+}
+
+.info-container {
+  width: 380px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+}
+
+.organizer-info-container{
+  width: 380px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+  font-weight: 600;
+  color: lightcyan;
+}
+
+.description-container {
+  width: 620px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  text-align: center;
+  font-weight: 600;
+}
+
+.comments-container {
+  width: 620px;
+  height: 700px;
+  margin: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  font-weight: 600;
+  overflow-y: auto;
+
+}
+
+.organized-events-page {
+  display: inline-block;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  min-width: 0;
+
+}
+
+.each-event-card {
+  display: inline-flex;
+  align-items: center;
+  margin: 5rem;
+  min-width: 0;
+  /* justify-content: space-around;
+  justify-items: auto; */
+  /* overflow-x: hidden; */
+
+}
+
+.all-event-card {
+  align-items: center;
+  align-content: center;
+  display: block;
+  float: left;
+  padding: 5px;
+}
+
+.comment-section h1 {
+  text-decoration: underline;
+}
+
+/* .comment-blurb h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  
+}
+.comment-blurb h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+
+} */
+
+.contact-card-container {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
+.contact-card {
+ padding: 10% 0 0 0;
+ width: 20%;
+ height: 40%;
+ align-content: center;
+ justify-content: center;
+}
+
+
+
+
+
+/* ////////////////////////////////////////////////////////*/
+/* OrganizeEvent*/
+/* ////////////////////////////////////////////////////////*/
+
+.organize-event-page {
+  background-image: url('./imgs/tillie.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+}
+
+.event-form{
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  display: flex;
+  /* display: inline-block; */
+  /* position: relative; */
+  margin: auto;
+  padding: 150px;
+  margin-top: 50px;
+  border-radius: 10px;
+  border: #333;
+  box-shadow: 0 0 4px #333;
+  /* background-color: #ddd; */
+  height: 75%;
+  width: 75%;
+
+}
+
+.form-card {
+  /* background-color: #7799d4; */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  /* justify-content: center;
+  align-items: center;
+  position: relative; */
+}
+
+.event-form-inputs {
+  float: left;
+}
+
+.event-form-description {
+  float: right;
+  position: relative;
+}
+
+.submit-event-bttn {
+  bottom: 0;
+  position: relative;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* AuthCalComponent*/
+/* ////////////////////////////////////////////////////////*/
+
+.calendar-page {
+  /* background-image: url('./imgs/tillie.png'); */
+  /* height: 80vh;
+  width: 100vh; */
+  /* display: flex; */
+  width: 100%;
+  height: 100vh;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  /* display: flex; */
+  /* overflow: contain; */
+}
+
+.calendar-header {
+  /* align-items: center; */
+  width: 100%;
+  /* justify-content: center; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* margin-left: 50%;
+  padding-left: 100px; */
+}
+
+.calendar-header-title {
+  display: block;
+  /* float: left; */
+  padding: 0 0 0 3%;
+}
+
+.calendar-component {
+  /* width: 100%; */
+  /* margin: 10% 0 0 10%; */
+  /* padding: 3% 0 0 0; */
+}
+
+.event-color-key {
+  float: right;
+  display: block;
+  /* margin: 0 0 0 25%; */
+  padding: 5% 10% 0 65%;
+  position: relative;
+  width: fit-content;
+  height: 20%;
+  align-items: center;
+}
+ .event-types {
+  display: flexbox;
+  /* justify-content: space-between; */
+ }
+
+#rsvp {
+  background-color: lightgreen;
+  height: fit-content;
+}
+
+#social {
+  color: antiquewhite;
+  background-color: indigo;
+  height: fit-content;
+}
+
+#arts {
+  background-color: lightblue;
+  height: fit-content;
+}
+
+#sports {
+  background-color: red;
+  height: fit-content;
+}
+
+#volunteer {
+  background-color: green;
+  height: fit-content;
+}
+/* ////////////////////////////////////////////////////////*/
+/* CommentSection*/
+/* ////////////////////////////////////////////////////////*/
+
+.comment-board {
+  position: relative;
+  border: #282c34;
+  border-style: dotted;
+}
+
+.comments {
+  position: relative;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* OrganizerCommentCard*/
+/* ////////////////////////////////////////////////////////*/
+
+.pinned-comment h4 {
+  /* position: absolute; */
+  /* top: 0; */
+  /* display: block; */
+  /* padding: 10% 2% 2% 2%; */
+  /* justify-content: space-around; */
+  /* width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: #89FC00;
+  box-shadow: 0 0 17px #333;
+  color: #01161E; */
+}
+
+.comment-body {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: #89FC00;
+  box-shadow: 0 0 17px #333;
+  color: #01161E;
+  display: flex;
+}
+
+.commenter {
+  display: flexbox;
+  float: unset;
+  float: none;
+}
+
+.pinned-comment h6 {
+  /* display: flexbox;
+  float: unset;
+  float: none; */
+}
+
+.other-organizer-comment h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+}
+
+.other-organizer-comment h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* UserCommentCard*/
+/* ////////////////////////////////////////////////////////*/
+
+.comment-blurb h4 {
+  width: auto;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 17px #333;
+  
+}
+.comment-blurb h6 {
+  display: flexbox;
+  float: unset;
+  float: none;
+}

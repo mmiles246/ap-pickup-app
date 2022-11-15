@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import Select from 'react-select'
+import {Card} from 'react-bootstrap'
 
 
 
@@ -35,7 +36,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
     }
 
     function handleSelectChange (e) {
-        setSelectedValue(Array.isArray(e) ? e.map(x => x.value) : [])
+        setSelectedValue(Array.isArray(e) ? e.map(selection => selection.value) : [])
     }
 
     function handleCheckboxClick (e) {
@@ -67,6 +68,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
             res.json().then(user => {
                 setCurrentUser(user)
                 navigate('/')
+                alert('You have successfully created an account!')
             })
         } else {
             res.json().then(errors=> {
@@ -74,6 +76,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
             })
         }
     })
+    alert("Please fill out the form to create an account.")
     }
 
 
@@ -125,7 +128,7 @@ function Signup ({setCurrentUser, currentUser, currentOrganizer}) {
 
                     <br></br>
 
-                    <Select isMulti isClearable name='interested_in' options={options} onChange={handleSelectChange} value={options.filter(obj => selectedValue.includes(obj.value))}   />
+                    <Select isMulti isClearable name='interested_in' options={options} onChange={handleSelectChange} value={options.filter(opt => selectedValue.includes(opt.value))}   />
 
                     <span>Would you like to recieve emails about new events in the area?</span>
 

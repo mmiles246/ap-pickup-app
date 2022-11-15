@@ -4,7 +4,12 @@ import {useState, useEffect} from 'react'
 
 function AllTownEventsEdit ({currentOrganizer}) {
     const [allEvents, setAllEvents]=useState([])
+    const [show, setShow] = useState(false);
+    const [dummyState, setDummyState]= useState(null)
+    const editEvent = useLocation()
 
+    console.log(editEvent)
+    // console.log(editEvent.state)
 
     useEffect(()=>{
         fetch('/town_events')
@@ -16,12 +21,15 @@ function AllTownEventsEdit ({currentOrganizer}) {
     }, [])
    
     function eventsMapper (eachEvent) {
-        return <AllEventCards key={eachEvent.id} eachEvent={eachEvent} />
+        return <AllEventCards key={eachEvent.id} eachEvent={eachEvent} show={show} setShow={setShow} />
     }
 
     return (
-        <div>   
-            {allEvents.map(eventsMapper)}
+        <div className='organized-events-page'> 
+            <div className='all-event-card'>
+                <h1>All Upcoming Events</h1>
+                {allEvents.map(eventsMapper)}
+            </div>  
         </div>)
 
 }

@@ -16,6 +16,7 @@ import EventModal from "./EventModal";
 import OrganizerEventModal from "./OrganizerEventModal";
 import AllTownEventsEdit from "./AllTownEventsEdit";
 import { set } from "date-fns";
+import EditEventModal from './EditEventModal'
 
 
 
@@ -35,11 +36,14 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     const [fetchedEvents, setFetchedEvents] = useState([]);
     const [eventInfoToPass, setEventInfoToPass]=useState([])
     const [stateToRerender, setStateToRerender]=useState(false)
+    const [eventsFilter, setEventsFilter] = useState('all events')
 
     const navigate = useNavigate()
 
     const [selectedEvent, setSelectedEvent] = useState(undefined);
     const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
+    const [eventToEdit, setEventToEdit] = useState()
 
     // const handleClose = () => setShow(false);
 
@@ -51,21 +55,19 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     function handleShow (e) {
         setSelectedEvent(e)
         setShow(true)
-        // console.log(selectedEvent.id)
-        navigate(`/upcoming/${selectedEvent.id}`)
+        setEventToEdit(e.target)
     }
 
-    // function handleSelectEvent (e) {
-    //     console.log(e)
-    //     setSelectedEvent(e)
-    //     navigate(`/upcoming/${selectedEvent.id}, {state:{handleShow, handleClose}}`)
+    let myEventsArray=[];
+    let signupsArray=[];
 
-    // }
+
 
     useEffect(()=> {
         fetch('/town_events')
         .then(res=>res.json())
         .then((res)=> {
+            console.log(res)
             setStateToRerender(false)
             setEventInfoToPass(res)
             setFetchedEvents(res.map(eachEvent=> {
@@ -77,46 +79,135 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
                     location: eachEvent.location,
                     event_description: eachEvent.event_description,
                     organizer: eachEvent.organizer,
-                    id: eachEvent.id
+                    user_comments:eachEvent.user_comments,
+                    organizer_comments: eachEvent.organizer_comments,
+                    signups: eachEvent.signups,
+                    id: eachEvent.id,
+                    signup_ids: eachEvent.signups_user_ids
                     
                 }
             })
             )
         })
     }, [stateToRerender])
+    
+    let current_user;
+    if (currentUser) {
+        current_user=currentUser
+    } else if (currentOrganizer) {
+        current_user=currentOrganizer
+    }
+    // let signupsArray=[];
+    if (current_user.is_user) {
+    current_user.signups.forEach((signup)=> {
+        signupsArray.push(signup.town_event_id)
+    }) 
+}
+
+function filterEvents (state, fetchedEvents) {
+                        
+    if(state === 'all events') {
+        return fetchedEvents
+    } else if(state === 'social') {
+        console.log(fetchedEvents.filter(event => event.type_of==='social'))
+        return fetchedEvents.filter(event => event.type_of==='social')
+    } else if(state === 'arts') {
+        return fetchedEvents.filter(event => event.type_of==='arts')
+    } else if(state === 'sports') {
+        return fetchedEvents.filter(event => event.type_of==='sports')
+    } else if(state === 'volunteer') {
+        return fetchedEvents.filter(event => event.type_of==='volunteer')
+    }
+}
 
     // console.log(eventInfoToPass)
     return(
         <div className="calendar-page">
-            <Row>
-                <Col xs={2}>
-                    <h1>Town Calendar</h1>
-                    {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
-                    :
-                    (null)
-                    }
-                    {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
+            {/* <Row> */}
+                {/* <Col xs={1}> */}
+                    <div className='calendar-header'>
+                        <div className='calendar-header-title'>
+                            <h1>Town Calendar</h1>
+                            {currentUser && currentUser.signups ? <p>You have upcoming events!</p> : ''}
+                        </div>
+                        
+                        <br></br>
+                        {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
+                        :
+                        <></>
+                        }
+                        <div className='events-filter'>
+                            <select type='select' name='event-filter' onChange={(e)=>{setEventsFilter(e.target.value)}}>
+                                <option value='all events'>All Events</option>
+                                <option value='social'>Social</option>
+                                <option value='arts'>Arts</option>
+                                <option value='sports'>Sports</option>
+                                <option value='volunteer'>Volunteer</option>
+                            </select>
+                        </div>
+                        {/* {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)} */}
+                        <br></br>
+                        
+                            {currentUser && currentUser.signups ? (
+                                <div className='event-color-key'>
+                                <h3>Color key</h3>
+                                    <div className='event-types'>
+                                        <span id='rsvp'>Rsvp'd</span>
+                                        <br></br>
+                                        <span id='social'>Social</span>
+                                        <br></br>
+                                        <span id='arts'>Arts</span>
+                                        <br></br>
+                                        <span id='sports'>Sports</span>
+                                        <br></br>
+                                        <span id='volunteer'>Volunteer</span>
+                                    </div>
+                                </div>)
+                                :
+                                <></> }
+                        
+                    </div>
+                    
 
-                    {currentUser && currentUser.signups ? (<p>You have upcoming events!</p>)
-                    :
-                    (null)
-                    }
-                </Col>
-                <Col xs={9}>
+
+                    
+                    
+                   
+                {/* </Col> */}
+                <div className='calendar-component'>
+                    <Col xs={12}>
                     <Calendar 
                     localizer={localizer} 
-                    events={fetchedEvents} 
+                    events={filterEvents(eventsFilter, fetchedEvents)} 
                     onSelectEvent={handleShow} 
                     startAccessor="start" 
                     endAccessor="end" 
                     style={{ height: 750, margin: "50px" }}
                     eventPropGetter={(e)=> {
-                        // console.log(e)
-                        const backgroundColor = e.allday ? 'green' : 'blue'
+                        let backgroundColor;
+                        if (current_user.is_organizer&&e.organizer.id === current_user.id) {
+                            backgroundColor='blue'
+                        } else if(current_user.is_organizer&&e.organizer.id !== current_user.id){
+                            backgroundColor='grey'
+                        }else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
+                            backgroundColor='green'
+                        } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
+                                backgroundColor='lightgreen'
+                            } else if (e.type_of==='social') {
+                                backgroundColor='indigo'
+                            } else if (e.type_of==='sports') {
+                                backgroundColor='red'
+                            } else if (e.type_of === 'volunteer') {
+                                backgroundColor='green'
+                            } else if (e.type_of === 'arts') {
+                                backgroundColor='lightblue'
+                            }
                         return {style: {backgroundColor}}
-                    }} />
-                </Col>
-            </Row>
+                        }} />
+                    </Col>
+                </div>
+                
+            {/* </Row> */}
             {(currentUser && show) ? (<EventModal selectedEvent={selectedEvent} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} eventInfoToPass={eventInfoToPass} currentUser={currentUser} currentOrganizer={currentOrganizer} setStateToRerender={setStateToRerender} />)
             :
             <></>}

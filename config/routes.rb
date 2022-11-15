@@ -6,11 +6,20 @@ Rails.application.routes.draw do
   resources :users
   resources :organizers
 
+
+  get '/dummy-route/:id', to: 'organizer_comments#show'
+
   get '/logged_in', to: 'application#user_or_organizer'
 
   get '/users', to: 'users#index'
 
   get '/town_events', to: 'town_events#index'
+
+  get '/town_events/:id', to:'town_events#show' 
+
+  get '/more-info/:event_id', to:'user_comments#show'
+
+  # get 'more-info/town_events', to: 'town_events#index'
 
   get '/town_event_page', to: 'organizers#show'
 
@@ -32,7 +41,9 @@ Rails.application.routes.draw do
 
   post 'event_comments', to: 'user_comments#create'
 
-  put '/organize_event/:event_id', to: 'town_events#update'
+  post '/organizer-event-comments', to: 'organizer_comments#create'
+
+  patch '/organize_event/:event_id', to: 'town_events#update'
 
   delete '/logout', to: 'sessions#destroy'
 

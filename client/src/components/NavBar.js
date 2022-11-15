@@ -5,16 +5,15 @@ import appLogo from '../imgs/APlogo.png'
 function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrganizer}) {
     // console.log(currentOrganizer)
     // console.log(currentOrganizer.profile_img)
-    console.log(currentUser)
     const primaryNav = document.querySelector('.primary-navigation')
     const mobileToggle = document.querySelector('.mobile-nav-toggle')
 
     function navToggle (e) {
         const visibility = primaryNav.getAttribute('data-visible')
-        if (visibility==='false') {
-        primaryNav.setAttribute('data-visible', true)
-        mobileToggle.setAttribute('aria-expanded', true )
-        } else if (visibility==='true') {
+        if (visibility === 'false') {
+            primaryNav.setAttribute('data-visible', true)
+            mobileToggle.setAttribute('aria-expanded', true )
+            } else if (visibility ==='true') {
             primaryNav.setAttribute('data-visible', false)
             mobileToggle.setAttribute('aria-expanded', false )
         }
@@ -26,25 +25,25 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
             <img className='logo' src={appLogo}></img>
         </div>
 
-        <button onClick={navToggle} className='mobile-nav-toggle' aria-controls='primary-navigation' aria-expanded='false'><span className='sr-only'>Menu</span></button>
+        <button onClick={navToggle} className='mobile-nav-toggle' aria-controls='primary-navigation' aria-expanded='false'><span>Menu</span></button>
         <nav>
                 <ul className="primary-navigation flex" data-visible='false' id='primary-navigation'>
                     
                     <li className='nav-links'>
-                        <Link to='/'>
+                        <Link to='/' style={{color: '#333'}}>
                             <span>Home</span>
                         </Link>
                     </li>
                     <li className='nav-links'>
-                        <Link to='/upcoming' currentUser={currentUser}>
+                        <Link to='/upcoming ' style={{color: '#333'}} currentUser={currentUser}>
                             <span>Upcoming Events</span>
                         </Link>
                     </li>
-                    {currentOrganizer ? (<li className='nav-links'><Link to='organize-event'><span>Organize Event</span></Link></li>)
+                    {currentOrganizer ? (<li className='nav-links'><Link to='organize-event' style={{color: '#333'}}><span>Organize Event</span></Link></li>)
                     :
                     (<></>)}
                     <li className='nav-links'>
-                        <Link to='/contactus'>
+                        <Link to='/contactus' style={{color: '#333'}}>
                         <span>Contact Us</span>
                         </Link>
                     </li>
@@ -52,7 +51,7 @@ function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrga
                     :
                     (<li className='nav-links'>
                         <div id='signup-bttn'>
-                            <Link to='/login'>
+                            <Link to='/login' style={{color: '#aliceblue'}}>
                                 <span>Login</span>
                             </Link>
                         </div>

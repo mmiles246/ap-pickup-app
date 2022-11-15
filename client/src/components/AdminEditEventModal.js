@@ -4,16 +4,17 @@ import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
 function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
-
+    // console.log(eventToEdit)
     // const [selectedEvent, setSelectedEvent] = useState(undefined);
     // const [show, setShow] = useState(false);
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
-        name: "",
-        type_of: "",
-        start_time: new Date(),
-        end_time: new Date(), 
-        location: ""
+        name: eventToEdit.name,
+        type_of: eventToEdit.type_of,
+        start_time: new Date(eventToEdit.start_time),
+        end_time: new Date(eventToEdit.end_time), 
+        location: eventToEdit.location,
+        event_description: eventToEdit.event_description
     })
 
     const navigate=useNavigate()
@@ -42,6 +43,8 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
             method: 'DELETE',
             credentials: 'include'
         })
+        alert("Event has been removed from the calendar.")
+        setShow(false)
     }
 
     function handleInputChange (e) {
@@ -56,7 +59,7 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
     function handleSubmit (e) {
         e.preventDefault()
         fetch(`/organize_event/${eventToEdit.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -67,7 +70,6 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                 end_time: updatedEvent.end_time,
                 location: updatedEvent.location,
                 event_description: updatedEvent.event_description,
-                sponsors: updatedEvent.sponsors
                 // organizer_id: currentOrganizer.id
             })
         })
@@ -80,6 +82,8 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                 })
             }
         })
+        alert("Event info has been updated.")
+        setShow(false)
     }
 
 
@@ -122,7 +126,12 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                     placeholder='Type of Event'
                     value={updatedEvent.type_of}
                     name='type_of'
-                    onChange={handleInputChange}
+                    onChange={(e)=>{
+                        console.log(updatedEvent.type_of)
+                        setUpdatedEvent({
+                        ...updatedEvent,
+                        'type_of': e.target.value
+                    })}}
                     >
                         <option value='volunteer'>Volunteer</option>
                         <option value='sports'>Sports</option>
@@ -154,13 +163,13 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                     onChange={handleInputChange}
                     ></textarea>
 
-                    <textarea
+                    {/* <textarea
                     type='text'
                     placeholder='Sponsors'
                     value={updatedEvent.sponsors}
                     name='sponsors'
                     onChange={handleInputChange}
-                    ></textarea>
+                    ></textarea> */}
 
                     <button type='submit'>Submit</button>
                 </form>)

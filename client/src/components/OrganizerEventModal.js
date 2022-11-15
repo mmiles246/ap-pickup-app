@@ -2,9 +2,18 @@ import {Modal, Button, ModalBody} from 'react-bootstrap'
 import {renderMatches, useNavigate} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import MoreInfoPage from './MoreInfoPage'
+import EditEventModal from './EditEventModal'
 
 function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganizer}) {
-    const [whosEvent, setWhosEvent]=useState(false)
+    const [eventToEdit, setEventToEdit] = useState(selectedEvent)
+    const [show1, setShow1] = useState(false)
+    const [whosEvent, setWhosEvent]=useState(() => {
+        if (selectedEvent.organizer.id === currentOrganizer.id) {
+            return true;
+        }
+        return false;
+    })
+
 
     const navigate=useNavigate()
 
@@ -15,11 +24,11 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
       }})
     }
 
-    useEffect(()=>{
-        if (selectedEvent.organizer.id === currentOrganizer.id) {
-            setWhosEvent(true)
-        } 
-    }, [])
+    function editClick (e) {
+        // setShow1(true)
+        // setEventToEdit(selectedEvent)
+        navigate(`/all-events/${selectedEvent.id}`, {state: ''})
+    }
 
 
         let modalBody; 
@@ -31,12 +40,10 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
 
         let modalBttn;
         if (!whosEvent&&currentOrganizer.admin) {
-            modalBttn=<Button variant='secondary'>Edit Event</Button>
+            modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
         } else if (whosEvent) {
-            modalBttn=<Button variant='secondary'>Edit Event</Button>
-        } else {
-            modalBttn=<Button onClick={seeEventInfoClick} variant='secondary'>See event details.</Button>
-        }
+            modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
+        } else {modalBttn=<Button>Return to Calendar</Button>}
     
     return (
         <div>
@@ -54,8 +61,10 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
                     {/* <Button variant="secondary" >
                     Login Here
                     </Button> */}
+                    <Button onClick={seeEventInfoClick} variant='secondary'>See event details.</Button>
                 </Modal.Footer>
             </Modal>
+            {/* {show1 ? <EditEventModal eventToEdit={eventToEdit} show={show1} setShow={setShow1} handleClose={handleClose} /> : ''} */}
         </div>
     )
 
