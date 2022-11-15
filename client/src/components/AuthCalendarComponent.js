@@ -16,6 +16,7 @@ import EventModal from "./EventModal";
 import OrganizerEventModal from "./OrganizerEventModal";
 import AllTownEventsEdit from "./AllTownEventsEdit";
 import { set } from "date-fns";
+import EditEventModal from './EditEventModal'
 
 
 
@@ -41,6 +42,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
 
     const [selectedEvent, setSelectedEvent] = useState(undefined);
     const [show, setShow] = useState(false);
+    const [show1, setShow1] = useState(false);
+    const [eventToEdit, setEventToEdit] = useState()
 
     // const handleClose = () => setShow(false);
 
@@ -52,8 +55,7 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
     function handleShow (e) {
         setSelectedEvent(e)
         setShow(true)
-        // console.log(selectedEvent.id)
-        // navigate(`/upcoming/${selectedEvent.id}`)
+        setEventToEdit(e.target)
     }
 
     let myEventsArray=[];
@@ -128,6 +130,12 @@ function filterEvents (state, fetchedEvents) {
                             <h1>Town Calendar</h1>
                             {currentUser && currentUser.signups ? <p>You have upcoming events!</p> : ''}
                         </div>
+                        
+                        <br></br>
+                        {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
+                        :
+                        <></>
+                        }
                         <div className='events-filter'>
                             <select type='select' name='event-filter' onChange={(e)=>{setEventsFilter(e.target.value)}}>
                                 <option value='all events'>All Events</option>
@@ -137,31 +145,27 @@ function filterEvents (state, fetchedEvents) {
                                 <option value='volunteer'>Volunteer</option>
                             </select>
                         </div>
+                        {/* {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)} */}
                         <br></br>
-                        {currentOrganizer ? (<Link to='/my-organized-events' currentOrganizer={currentOrganizer}> <h3>My Events</h3> </Link>)
-                        :
-                        <></>
-                        }
-                        {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)}
-                        <br></br>
-                        <div className='event-color-key'>
+                        
                             {currentUser && currentUser.signups ? (
-                                <div>
-                                <br></br>
+                                <div className='event-color-key'>
                                 <h3>Color key</h3>
-                                <span id='rsvp'>Rsvp'd</span>
-                                <br></br>
-                                <span id='social'>Social type event</span>
-                                <br></br>
-                                <span id='arts'>Arts type event</span>
-                                <br></br>
-                                <span id='sports'>Sports type event</span>
-                                <br></br>
-                                <span id='volunteer'>Volunteer type event</span>
+                                    <div className='event-types'>
+                                        <span id='rsvp'>Rsvp'd</span>
+                                        <br></br>
+                                        <span id='social'>Social</span>
+                                        <br></br>
+                                        <span id='arts'>Arts</span>
+                                        <br></br>
+                                        <span id='sports'>Sports</span>
+                                        <br></br>
+                                        <span id='volunteer'>Volunteer</span>
+                                    </div>
                                 </div>)
                                 :
                                 <></> }
-                        </div>
+                        
                     </div>
                     
 
@@ -171,7 +175,7 @@ function filterEvents (state, fetchedEvents) {
                    
                 {/* </Col> */}
                 <div className='calendar-component'>
-                    {/* <Col xs={9}> */}
+                    <Col xs={12}>
                     <Calendar 
                     localizer={localizer} 
                     events={filterEvents(eventsFilter, fetchedEvents)} 
@@ -181,9 +185,11 @@ function filterEvents (state, fetchedEvents) {
                     style={{ height: 750, margin: "50px" }}
                     eventPropGetter={(e)=> {
                         let backgroundColor;
-                        if (current_user.is_organizer) {
+                        if (current_user.is_organizer&&e.organizer.id === current_user.id) {
                             backgroundColor='blue'
-                        } else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
+                        } else if(current_user.is_organizer&&e.organizer.id !== current_user.id){
+                            backgroundColor='grey'
+                        }else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
                             backgroundColor='green'
                         } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
                                 backgroundColor='lightgreen'
@@ -198,7 +204,7 @@ function filterEvents (state, fetchedEvents) {
                             }
                         return {style: {backgroundColor}}
                         }} />
-                    {/* </Col> */}
+                    </Col>
                 </div>
                 
             {/* </Row> */}

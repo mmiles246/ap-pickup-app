@@ -10,14 +10,13 @@ function OrganizedEventsPage ({currentOrganizer}) {
     const [eventPageInfo, setEventPageInfo]=useState([])
     const [eventToEdit, setEventToEdit]=useState(undefined)
     const [stateToRerender, setStateToRerender]=useState(false)
-    const [filterState, setFilterState]=useState()
+    const [filterState, setFilterState]=useState('start_time')
 
     let filteredArray = []
     
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-
 
     useEffect(()=>{
         fetch('/town_event_page')
@@ -28,10 +27,17 @@ function OrganizedEventsPage ({currentOrganizer}) {
             setStateToRerender(false)
         })
     }, [stateToRerender])
-    console.log(eventPageInfo)
+    
+    // const mappedEvents = eventPageInfo.map()
 
-    function filterFunction (e) {
-        setFilterState(e.target.value)
+    function sortEvents (filterState, eventPageInfo, a, b) {
+        if (filterState === 'start_time') {
+            eventPageInfo.sort(a,b)
+        }
+    }
+
+    function filterFunction () {
+        
 
         if (filterState === 'start_time') {
             eventPageInfo.sort(function(a, b){
@@ -85,11 +91,11 @@ function OrganizedEventsPage ({currentOrganizer}) {
             <select
             type='select'
             name='fiter'
-            onChange={filterFunction}
+            onChange={(e)=>{setFilterState(e.target.value)}}
             >
-                <option value='start_time'>Event Type</option>
-                <option value='type_of'>RSVPs</option>
-                <option value='rsvps'>Date</option>
+                <option value='start_time'>Date</option>
+                <option value='type_of'>Event Type</option>
+                <option value='rsvps'>RSVPs</option>
             </select>
             <div className='each-event-card'>
                 {eventPageInfo.map((eachEvent)=>{
@@ -97,8 +103,9 @@ function OrganizedEventsPage ({currentOrganizer}) {
                     <EachEventCard key={eachEvent.id} eachEvent={eachEvent} />
                     )
                 })}
+                
             </div>
-            <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit} setStateToRerender={setStateToRerender}/>
+            {/* <EditEventModal show={show} setShow={setShow} handleClose={handleClose} eventToEdit={eventToEdit} setStateToRerender={setStateToRerender}/> */}
 
         </div>)
 }

@@ -394,51 +394,7 @@
 
 
 
-.calendar-page {
-  /* background-image: url('./imgs/tillie.png'); */
-  /* height: 80vh;
-  width: 100vh; */
-  /* display: flex; */
-  width: 100%;
-  height: 100vh;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  /* display: flex; */
-  /* overflow: contain; */
-}
 
-.calendar-header {
-  /* align-items: center; */
-  width: 100%;
-  /* justify-content: center; */
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  /* margin-left: 50%;
-  padding-left: 100px; */
-}
-
-.calendar-header-title {
-  display: block;
-  /* float: left; */
-  padding: 0 0 0 3%;
-}
-
-.calendar-component {
-  width: 100%;
-  /* margin: 10% 0 0 10%; */
-  padding: 3% 0 0 0;
-}
-
-.event-color-key {
-  float: right;
-  display: block;
-  /* margin: 0 0 0 25%; */
-  padding: 0 0 0 70%;
-  position: relative;
-  overflow: none;
-}
 
 
 .ask-to-sign-in {
@@ -446,26 +402,7 @@
   background-color: #333;
 }
 
-#rsvp {
-  background-color: lightgreen;
-}
 
-#social {
-  color: antiquewhite;
-  background-color: indigo;
-}
-
-#arts {
-  background-color: lightblue;
-}
-
-#sports {
-  background-color: red;
-}
-
-#volunteer {
-  background-color: green;
-}
 
 .event-card {
   margin: 0;
@@ -563,18 +500,40 @@
 } */
 
 .contact-card-container {
-  top: auto;
+  height: 100%;
+  width: 100%;
   align-items: center;
-  align-self: auto;
-  margin: auto;
+  justify-content: center;
+  align-content: center;
   display: flex;
-  float: inline-start;
 }
 
 .contact-card {
-  position: relative;
-  display: block;
-  margin: auto;
+ padding: 10% 0 0 0;
+ width: 20%;
+ height: 40%;
+ align-content: center;
+ justify-content: center;
+}
+
+
+
+
+
+/* ////////////////////////////////////////////////////////*/
+/* OrganizeEvent*/
+/* ////////////////////////////////////////////////////////*/
+
+.organize-event-page {
+  background-image: url('./imgs/tillie.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 
 }
 
@@ -582,26 +541,130 @@
   align-items: center;
   align-content: center;
   justify-items: center;
-  display: inline-block;
-  position: relative;
+  display: flex;
+  /* display: inline-block; */
+  /* position: relative; */
   margin: auto;
   padding: 150px;
   margin-top: 50px;
   border-radius: 10px;
   border: #333;
   box-shadow: 0 0 4px #333;
-  background-color: #ddd;
-  height: min-content;
+  /* background-color: #ddd; */
+  height: 75%;
+  width: 75%;
+
 }
 
-/* .organize-event-page {
-  background-image: url('./imgs/tillie.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+.form-card {
+  /* background-color: #7799d4; */
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  /* justify-content: center;
+  align-items: center;
+  position: relative; */
+}
 
-} */
+.event-form-inputs {
+  float: left;
+}
 
+.event-form-description {
+  float: right;
+  position: relative;
+}
+
+.submit-event-bttn {
+  bottom: 0;
+  position: relative;
+}
+
+/* ////////////////////////////////////////////////////////*/
+/* AuthCalComponent*/
+/* ////////////////////////////////////////////////////////*/
+
+.calendar-page {
+  /* background-image: url('./imgs/tillie.png'); */
+  /* height: 80vh;
+  width: 100vh; */
+  /* display: flex; */
+  width: 100%;
+  height: 100vh;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  /* display: flex; */
+  /* overflow: contain; */
+}
+
+.calendar-header {
+  /* align-items: center; */
+  width: 100%;
+  /* justify-content: center; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* margin-left: 50%;
+  padding-left: 100px; */
+}
+
+.calendar-header-title {
+  display: block;
+  /* float: left; */
+  padding: 0 0 0 3%;
+}
+
+.calendar-component {
+  /* width: 100%; */
+  /* margin: 10% 0 0 10%; */
+  /* padding: 3% 0 0 0; */
+}
+
+.event-color-key {
+  float: right;
+  display: block;
+  /* margin: 0 0 0 25%; */
+  padding: 5% 10% 0 65%;
+  position: relative;
+  width: fit-content;
+  height: 20%;
+  align-items: center;
+}
+ .event-types {
+  display: flexbox;
+  /* justify-content: space-between; */
+ }
+
+#rsvp {
+  background-color: lightgreen;
+  height: fit-content;
+}
+
+#social {
+  color: antiquewhite;
+  background-color: indigo;
+  height: fit-content;
+}
+
+#arts {
+  background-color: lightblue;
+  height: fit-content;
+}
+
+#sports {
+  background-color: red;
+  height: fit-content;
+}
+
+#volunteer {
+  background-color: green;
+  height: fit-content;
+}
 /* ////////////////////////////////////////////////////////*/
 /* CommentSection*/
 /* ////////////////////////////////////////////////////////*/

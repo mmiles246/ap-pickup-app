@@ -2,8 +2,11 @@ import {Modal, Button, ModalBody} from 'react-bootstrap'
 import {renderMatches, useNavigate} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import MoreInfoPage from './MoreInfoPage'
+import EditEventModal from './EditEventModal'
 
 function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganizer}) {
+    const [eventToEdit, setEventToEdit] = useState(selectedEvent)
+    const [show1, setShow1] = useState(false)
     const [whosEvent, setWhosEvent]=useState(() => {
         if (selectedEvent.organizer.id === currentOrganizer.id) {
             return true;
@@ -21,8 +24,10 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
       }})
     }
 
-    function editClick () {
-        navigate(`/my-organized-events/${selectedEvent.id}`)
+    function editClick (e) {
+        // setShow1(true)
+        // setEventToEdit(selectedEvent)
+        navigate(`/all-events/${selectedEvent.id}`, {state: ''})
     }
 
 
@@ -59,6 +64,7 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
                     <Button onClick={seeEventInfoClick} variant='secondary'>See event details.</Button>
                 </Modal.Footer>
             </Modal>
+            {/* {show1 ? <EditEventModal eventToEdit={eventToEdit} show={show1} setShow={setShow1} handleClose={handleClose} /> : ''} */}
         </div>
     )
 

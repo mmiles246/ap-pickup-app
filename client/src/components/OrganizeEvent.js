@@ -55,57 +55,70 @@ function OrganizeEvent () {
     return(
         <div className='organize-event-page'>
             <div className='event-form'>
-                <Card>
+                <Card >
                     <Card.Body>
                         <Card.Title>Organize new Event</Card.Title>
                         <Card.Text>
-                    <form onSubmit={handleSubmit}>
-                    <input
-                    type='text'
-                    placeholder='Name of Event'
-                    value={newEvent.name}
-                    name='name'
-                    onChange={handleInputChange}
-                    >
-                    </input>
+                    <form  onSubmit={handleSubmit}>
+                        <div className='form-card'>
+                        <div className='event-form-inputs'>
+                            <input
+                            type='text'
+                            placeholder='Name of Event'
+                            value={newEvent.name}
+                            name='name'
+                            onChange={handleInputChange}
+                            >
+                            </input>
 
-                    <label htmlFor='type_of'>Type Of Event: </label>
-                    <select
-                    type='select'
-                    placeholder='Type of Event'
-                    value={newEvent.type_of}
-                    name='type_of'
-                    onChange={handleInputChange}
-                    >
-                        <option value='volunteer'>Volunteer</option>
-                        <option value='sports'>Sports</option>
-                        <option value='arts'>Arts</option>
-                        <option value='social'>Social</option>
-                    </select>
                     
-                    <DatePicker placeholderText='Start Time' showTimeSelect selected={newEvent.start_time} onChange={(start_time)=> setNewEvent({...newEvent, start_time})} />
+                    
+                            <DatePicker placeholderText='Start Time' showTimeSelect selected={newEvent.start_time} onChange={(start_time)=> setNewEvent({...newEvent, start_time})} />
 
-                    <DatePicker placeholderText='End Time' showTimeSelect selected={newEvent.end_time} onChange={(end_time)=> setNewEvent({...newEvent, end_time})} />
+                            <DatePicker placeholderText='End Time' showTimeSelect selected={newEvent.end_time} onChange={(end_time)=> setNewEvent({...newEvent, end_time})} />
 
-                    <input
-                    type='text'
-                    placeholder='Location of Event'
-                    value={newEvent.location}
-                    name='location'
-                    onChange={handleInputChange}
-                    >
-                    </input>
+                            <input
+                            type='text'
+                            placeholder='Location of Event'
+                            value={newEvent.location}
+                            name='location'
+                            onChange={handleInputChange}
+                            >
+                            </input>
+                        </div>
+                    
 
+                        <div className='event-form-description'>
+                            <label htmlFor='type_of'>Type Of Event: </label>
+                            <select
+                            type='select'
+                            placeholder='Type of Event'
+                            value={newEvent.type_of}
+                            name='type_of'
+                            onChange={handleInputChange}
+                            >
+                            <option value='volunteer'>Volunteer</option>
+                            <option value='sports'>Sports</option>
+                            <option value='arts'>Arts</option>
+                            <option value='social'>Social</option>
+                            </select>
+
+                            <br></br>
+                            <br></br>
+
+                            <textarea
+                            type='textinput'
+                            placeholder='Event Description'
+                            value={newEvent.event_description}
+                            name='event_description'
+                            onChange={handleInputChange}
+                            rows='5'
+                            cols='50'
+                            ></textarea>
+                        </div>
+                    
                     <br></br>
                     <br></br>
-
-                    <textarea
-                    type='textinput'
-                    placeholder='Event Description'
-                    value={newEvent.event_description}
-                    name='event_description'
-                    onChange={handleInputChange}
-                    ></textarea>
 
                     {/* <textarea
                     type='text'
@@ -114,8 +127,11 @@ function OrganizeEvent () {
                     name='sponsors'
                     onChange={handleInputChange}
                     ></textarea> */}
-
-                    <button type='submit'>Submit</button>
+                    </div>
+                    <div className='submit-event-bttn'>
+                        <button type='submit'>Submit</button>
+                    </div>
+                    
                 </form>
                         </Card.Text>
                     </Card.Body>

@@ -4,10 +4,10 @@ import {Modal, Button} from 'react-bootstrap'
 import {Card} from 'react-bootstrap'
 import AdminEditEventModal from './AdminEditEventModal';
 
-function AllEventCards ({eachEvent}) {
+function AllEventCards ({eachEvent, show, setShow}) {
     const [eventToEdit, setEventToEdit]=useState(eachEvent)
     
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
 

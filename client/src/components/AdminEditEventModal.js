@@ -4,15 +4,15 @@ import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
 function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
-
+    // console.log(eventToEdit)
     // const [selectedEvent, setSelectedEvent] = useState(undefined);
     // const [show, setShow] = useState(false);
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
         name: eventToEdit.name,
         type_of: eventToEdit.type_of,
-        start_time: new Date(),
-        end_time: new Date(), 
+        start_time: new Date(eventToEdit.start_time),
+        end_time: new Date(eventToEdit.end_time), 
         location: eventToEdit.location,
         event_description: eventToEdit.event_description
     })

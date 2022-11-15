@@ -5,7 +5,6 @@ import appLogo from '../imgs/APlogo.png'
 function NavBar ({currentUser, setCurrentUser, currentOrganizer , setCurrentOrganizer}) {
     // console.log(currentOrganizer)
     // console.log(currentOrganizer.profile_img)
-    console.log(currentUser)
     const primaryNav = document.querySelector('.primary-navigation')
     const mobileToggle = document.querySelector('.mobile-nav-toggle')
 

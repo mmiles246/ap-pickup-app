@@ -11,7 +11,6 @@ function EachEventCard ({eachEvent}) {
 
     const navigate=useNavigate()
 
-    console.log(eachEvent)
     
     // const handleClose = () => setShow(false);
 

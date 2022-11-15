@@ -4,14 +4,15 @@ import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
 function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRerender}) {
-    console.log(eventToEdit)
+    // console.log(eventToEdit)
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
-        name: "",
-        type_of: "",
-        start_time: new Date(),
-        end_time: new Date(), 
-        location: ""
+        name: eventToEdit.name,
+        type_of: eventToEdit.type_of,
+        start_time: new Date(eventToEdit.start_time),
+        end_time: new Date(eventToEdit.end_time), 
+        location: eventToEdit.location,
+        event_description: eventToEdit.event_description
     })
 
     console.log(eventToEdit)
