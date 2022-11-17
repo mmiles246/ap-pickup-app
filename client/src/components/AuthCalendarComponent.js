@@ -191,11 +191,9 @@ function filterEvents (state, fetchedEvents) {
                     eventPropGetter={(e)=> {
                         let backgroundColor;
                         if (current_user.is_organizer&&e.organizer.id === current_user.id) {
-                            backgroundColor='blue'
+                            backgroundColor='#04A777'
                         } else if(current_user.is_organizer&&e.organizer.id !== current_user.id){
                             backgroundColor='grey'
-                        }else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
-                            backgroundColor='#04A777'
                         } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
                                 backgroundColor='#04A777'
                             } else if (e.type_of==='social') {

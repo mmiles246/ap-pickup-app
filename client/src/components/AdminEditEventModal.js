@@ -17,12 +17,14 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
         event_description: eventToEdit.event_description
     })
 
+    console.log(eventToEdit)
+
     const navigate=useNavigate()
     
-    function handleClose (e) {
-        setShow(false)
-        navigate('/all-events')
-    }
+    // function handleClose (e) {
+    //     setShow(false)
+    //     navigate('/all-events')
+    // }
 
     // function handleShow (e) {
 
@@ -83,6 +85,7 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
             }
         })
         alert("Event info has been updated.")
+        
         setShow(false)
     }
 

@@ -6,9 +6,9 @@ function AllTownEventsEdit ({currentOrganizer}) {
     const [allEvents, setAllEvents]=useState([])
     const [show, setShow] = useState(false);
     const [dummyState, setDummyState]= useState(null)
-    const editEvent = useLocation()
+    // const editEvent = useLocation()
 
-    console.log(editEvent)
+
     // console.log(editEvent.state)
 
     useEffect(()=>{
@@ -28,7 +28,8 @@ function AllTownEventsEdit ({currentOrganizer}) {
         <div className='organized-events-page'> 
             <div className='all-event-card'>
                 <h1>All Upcoming Events</h1>
-                {allEvents.map(eventsMapper)}
+                {/* {allEvents.map(eventsMapper)} */}
+                {allEvents.map((e) => {return <AllEventCards key={e.id} event={e} show={show} setShow={setShow}/>})}
             </div>  
         </div>)
 

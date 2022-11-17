@@ -37,7 +37,6 @@ function CommentsSection ({currentUser, thisEvent, currentOrganizer}) {
     })
     
 
-    console.log(thisEventComments)
 
     function commentsMapper (eachComment) {
         return <UserCommentCard key={eachComment.id} eachComment={eachComment} userThatCommented={eachComment.user.first_name} />

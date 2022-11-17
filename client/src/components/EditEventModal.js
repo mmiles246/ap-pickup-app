@@ -15,8 +15,6 @@ function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRer
         event_description: eventToEdit.event_description
     })
 
-    console.log(eventToEdit)
-
     function editEventClick (e) {
         console.log(e)
         setEditEventShow(true)

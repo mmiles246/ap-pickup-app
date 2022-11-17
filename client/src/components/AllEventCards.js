@@ -4,19 +4,19 @@ import {Modal, Button} from 'react-bootstrap'
 import {Card} from 'react-bootstrap'
 import AdminEditEventModal from './AdminEditEventModal';
 
-function AllEventCards ({eachEvent, show, setShow}) {
-    const [eventToEdit, setEventToEdit]=useState(eachEvent)
+function AllEventCards ({event}) {
+    const [eventToEdit, setEventToEdit]=useState(event)
     
-    // const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
 
     const navigate=useNavigate()
 
     function onClick (e) {
-        console.log(e)
+        console.log(event)
         setShow(true)
-        navigate(`/all-events/${eachEvent.id}`, {state: {eachEvent}})
+        navigate(`/all-events/${event.id}`, {state: {event}})
     }
 
 
@@ -25,21 +25,21 @@ function AllEventCards ({eachEvent, show, setShow}) {
         <div className='all-event-card'>
             <Card className='all-event-card' style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>{eachEvent.name}</Card.Title>
-                    <Card.Subtitle>{eachEvent.type_of}</Card.Subtitle>
+                    <Card.Title>{event.name}</Card.Title>
+                    <Card.Subtitle>{event.type_of}</Card.Subtitle>
                     <Card.Text>
-                    {eachEvent.location}
-                    {new Date(eachEvent.start_time).toString()}
-                    Number of RSVPs: {eachEvent.signups.length}
+                    {event.location}
+                    {new Date(event.start_time).toString()}
+                    Number of RSVPs: {event.signups.length}
                     <br></br>
-                    <h5>Organized by: {eachEvent.organizer.first_name}</h5>
-                    <h6>Organizer ID: {eachEvent.organizer.id}</h6>
+                    <h5>Organized by: {event.organizer.first_name}</h5>
+                    <h6>Organizer ID: {event.organizer.id}</h6>
                     </Card.Text>
                     <button style={{width: '15rem'}} onClick={onClick}>Edit Event?</button>
                 </Card.Body>
             </Card>
 
-        {show ? (<AdminEditEventModal eventToEdit={eventToEdit} show={show} setShow={setShow} handleClose={handleClose} />)
+        {show ? (<AdminEditEventModal eventToEdit={event} show={show} setShow={setShow} handleClose={handleClose} />)
             :
             <></>}
 
