@@ -101,6 +101,7 @@ function OrganizeEvent () {
                             <option value='sports'>Sports</option>
                             <option value='arts'>Arts</option>
                             <option value='social'>Social</option>
+                            <option value='drink and dine'>Drink and Dine</option>
                             </select>
 
                             <br></br>

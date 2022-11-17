@@ -117,6 +117,8 @@ function filterEvents (state, fetchedEvents) {
         return fetchedEvents.filter(event => event.type_of==='sports')
     } else if(state === 'volunteer') {
         return fetchedEvents.filter(event => event.type_of==='volunteer')
+    } else if(state === 'drink and dine') {
+        return fetchedEvents.filter(event => event.type_of==='drink and dine')
     }
 }
 
@@ -143,6 +145,7 @@ function filterEvents (state, fetchedEvents) {
                                 <option value='arts'>Arts</option>
                                 <option value='sports'>Sports</option>
                                 <option value='volunteer'>Volunteer</option>
+                                <option value='drink and dine'>Drink and Dine</option>
                             </select>
                         </div>
                         {/* {currentOrganizer&&currentOrganizer.admin ? (<Link to='/all-events' state={eventInfoToPass}>All Events</Link>) : (<></>)} */}
@@ -161,6 +164,8 @@ function filterEvents (state, fetchedEvents) {
                                         <span id='sports'>Sports</span>
                                         <br></br>
                                         <span id='volunteer'>Volunteer</span>
+                                        <br></br>
+                                        <span id='drink-and-dine'>Drink and Dine</span>
                                     </div>
                                 </div>)
                                 :
@@ -175,7 +180,7 @@ function filterEvents (state, fetchedEvents) {
                    
                 {/* </Col> */}
                 <div className='calendar-component'>
-                    <Col xs={12}>
+                    {/* <Col xs={12}> */}
                     <Calendar 
                     localizer={localizer} 
                     events={filterEvents(eventsFilter, fetchedEvents)} 
@@ -190,21 +195,23 @@ function filterEvents (state, fetchedEvents) {
                         } else if(current_user.is_organizer&&e.organizer.id !== current_user.id){
                             backgroundColor='grey'
                         }else if (current_user.is_organizer&&myEventsArray.includes(e.id)) {
-                            backgroundColor='green'
+                            backgroundColor='#04A777'
                         } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
-                                backgroundColor='lightgreen'
+                                backgroundColor='#04A777'
                             } else if (e.type_of==='social') {
-                                backgroundColor='indigo'
+                                backgroundColor='#23395B'
                             } else if (e.type_of==='sports') {
                                 backgroundColor='red'
                             } else if (e.type_of === 'volunteer') {
-                                backgroundColor='green'
+                                backgroundColor='#5E0B15'
                             } else if (e.type_of === 'arts') {
                                 backgroundColor='lightblue'
+                            } else if( e.type_of === 'drink and dine') {
+                                backgroundColor='#B3DEC1' 
                             }
                         return {style: {backgroundColor}}
                         }} />
-                    </Col>
+                    {/* </Col> */}
                 </div>
                 
             {/* </Row> */}

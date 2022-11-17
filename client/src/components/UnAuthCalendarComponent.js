@@ -78,7 +78,8 @@ function UnAuthCalendarComponent () {
                     <h1>Town Events</h1>
                     
                 {/* </Col> */}
-                <Col xs={8}>
+                {/* <Col xs={8}> */}
+                <div className='calendar-component'>
                     <Calendar 
                     localizer={localizer} 
                     events={fetchedEvents} 
@@ -90,7 +91,9 @@ function UnAuthCalendarComponent () {
                         const backgroundColor = e.allday ? 'green' : 'blue'
                         return {style: {backgroundColor}}
                     }} />
-                </Col>
+                </div>
+                    
+                {/* </Col> */}
             </Row>
             {show ? (<UnAuthEventModal show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} />)
             :

@@ -137,6 +137,7 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                         <option value='sports'>Sports</option>
                         <option value='arts'>Arts</option>
                         <option value='social'>Social</option>
+                        <option value='drink and dine'>Drink and Dine</option>
                     </select>
                     
                     <DatePicker placeholderText='Start Time' showTimeSelect selected={updatedEvent.start_time} onChange={(start_time)=> setUpdatedEvent({...updatedEvent, start_time})} />

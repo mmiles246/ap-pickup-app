@@ -553,6 +553,7 @@
   /* background-color: #ddd; */
   height: 75%;
   width: 75%;
+  min-width: min-content;
 
 }
 
@@ -620,9 +621,9 @@
 }
 
 .calendar-component {
-  /* width: 100%; */
+  width: 100%;
   /* margin: 10% 0 0 10%; */
-  /* padding: 3% 0 0 0; */
+  padding: 3% 0 0 0;
 }
 
 .event-color-key {
@@ -641,13 +642,13 @@
  }
 
 #rsvp {
-  background-color: lightgreen;
+  background-color: #04A777;
   height: fit-content;
 }
 
 #social {
   color: antiquewhite;
-  background-color: indigo;
+  background-color: #23395B;
   height: fit-content;
 }
 
@@ -662,9 +663,16 @@
 }
 
 #volunteer {
-  background-color: green;
+  color: antiquewhite;
+  background-color: #5E0B15;
   height: fit-content;
 }
+
+#drink-and-dine {
+  background-color: #B3DEC1;
+  height: fit-content;
+}
+
 /* ////////////////////////////////////////////////////////*/
 /* CommentSection*/
 /* ////////////////////////////////////////////////////////*/
