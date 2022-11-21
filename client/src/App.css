@@ -83,7 +83,7 @@
 #logout-bttn {
   width: auto;
 }
-/* 
+
 @media (max-width: 65em) {
   .primary-navigation {
     --gap: 2em;
@@ -130,7 +130,7 @@
     padding-block: 2rem;
     padding-inline: clamp(3rem, 5vw, 8rem) ;
   }
-} */
+}
 
 
 

@@ -180,7 +180,7 @@ function filterEvents (state, fetchedEvents) {
                    
                 {/* </Col> */}
                 <div className='calendar-component'>
-                    {/* <Col xs={12}> */}
+                    <Col xs={12}>
                     <Calendar 
                     localizer={localizer} 
                     events={filterEvents(eventsFilter, fetchedEvents)} 
@@ -212,7 +212,7 @@ function filterEvents (state, fetchedEvents) {
                             } 
                         return {style: {backgroundColor}}
                         }} />
-                    {/* </Col> */}
+                    </Col>
                 </div>
                 
             {/* </Row> */}
@@ -224,7 +224,7 @@ function filterEvents (state, fetchedEvents) {
             :
             (<></>)
             }
-            <Outlet />
+            {/* <Outlet /> */}
         </div>
     )
 

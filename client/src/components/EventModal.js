@@ -115,11 +115,6 @@ console.log(selectedEvent)
               :
               (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
             }
-            {/* {selectedEvent.signup_ids.includes(currentUser.id) ?
-            (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
-            :
-            (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
-            } */}
 
 
           </Modal.Footer>

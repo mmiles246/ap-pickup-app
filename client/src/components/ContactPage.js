@@ -1,5 +1,6 @@
 import {Card} from 'react-bootstrap'
 import { Outlet } from 'react-router-dom'
+import OrganizerApplication from './OrganizerApplication';
 
 function ContactPage () {
 
@@ -15,6 +16,7 @@ function ContactPage () {
                         </Card.Body>
                     </Card>
                 </div>
+                <OrganizerApplication />
             </div>
             // <Outlet />
     )
