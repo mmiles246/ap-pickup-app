@@ -50,7 +50,7 @@ function EventModal ({selectedEvent, show, setShow, handleClose, handleShow, eve
     // console.log(selectedEvent)
     // console.log(handleRsvp.includes(currentUser.id))
 
-console.log(handleRsvp)
+console.log(selectedEvent)
 
 
     function handleRsvpClick (e) {
@@ -84,7 +84,7 @@ console.log(handleRsvp)
       fetch(`/event_rsvp/${selectedEvent.id}`, {
         method: 'DELETE'
       })
-      handleRsvp.pop()
+      // handleRsvp.pop()
       alert("Succsessfully canceled RSVP")
       setStateToRerender(true)
       setShow(false)
@@ -100,18 +100,26 @@ console.log(handleRsvp)
               {selectedEvent.title}
               </Modal.Title>
           </Modal.Header>
-          <Modal.Body>{eventArray[0].event_description}</Modal.Body>
+          <Modal.Body>
+            {/* {eventArray[0].event_description} */}
+            {/* {selectedEvent.event_description} */}
+            {selectedEvent.start < new Date() ? 'This Event has already passed.' : selectedEvent.event_description}
+            </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleInfoClick}>
               See more info here!
             </Button>
             {
-               handleRsvp.includes(currentUser.id)
-               ?
-                (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
+              selectedEvent.start < new Date() ? <></> : selectedEvent.signup_ids.includes(currentUser.id) ?
+              (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
               :
-                (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
+              (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
             }
+            {/* {selectedEvent.signup_ids.includes(currentUser.id) ?
+            (<Button variant="primary" onClick={handleCancelRsvpClick}>cancel RSVP</Button>)
+            :
+            (<Button variant="primary" onClick={handleRsvpClick}>RSVP </Button>)
+            } */}
 
 
           </Modal.Footer>

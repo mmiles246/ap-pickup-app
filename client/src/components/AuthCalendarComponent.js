@@ -4,7 +4,7 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import { useState, useEffect} from 'react';
 import { useNavigate, Link, Outlet } from "react-router-dom";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +15,7 @@ import { ca } from "date-fns/locale";
 import EventModal from "./EventModal";
 import OrganizerEventModal from "./OrganizerEventModal";
 import AllTownEventsEdit from "./AllTownEventsEdit";
-import { set } from "date-fns";
+import { max, set } from "date-fns";
 import EditEventModal from './EditEventModal'
 
 
@@ -187,11 +187,14 @@ function filterEvents (state, fetchedEvents) {
                     onSelectEvent={handleShow} 
                     startAccessor="start" 
                     endAccessor="end" 
-                    style={{ height: 750, margin: "50px" }}
+                    style={{ height: 750, width: max}}
+                    views={['month', 'day', 'agenda']}
                     eventPropGetter={(e)=> {
                         let backgroundColor;
                         if (current_user.is_organizer&&e.organizer.id === current_user.id) {
                             backgroundColor='#04A777'
+                        } else if(e.start < new Date()) {
+                            backgroundColor='#104547'
                         } else if(current_user.is_organizer&&e.organizer.id !== current_user.id){
                             backgroundColor='grey'
                         } else if (current_user.is_user&&e.signup_ids.includes(currentUser.id)) {
@@ -206,7 +209,7 @@ function filterEvents (state, fetchedEvents) {
                                 backgroundColor='lightblue'
                             } else if( e.type_of === 'drink and dine') {
                                 backgroundColor='#B3DEC1' 
-                            }
+                            } 
                         return {style: {backgroundColor}}
                         }} />
                     {/* </Col> */}
