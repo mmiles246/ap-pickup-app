@@ -36,39 +36,28 @@ function OrganizerApplication () {
         }
 
         axios.post('https://sheet.best/api/sheets/ddf64070-863e-4192-a365-c67a2d7f8d7d', data).then((res)=> {console.log(res)})
-
-        // fetch('https://sheet.best/api/sheets/ddf64070-863e-4192-a365-c67a2d7f8d7d', {
-        //     method: 'POST',
-        //     header: {
-        //         // 'Accept': 'application/json',
-        //         'Content-Type': 'text/xml'
-        //     },
-        //     body: JSON.stringify({
-        //         name: appData.name,
-        //         email: appData.email,
-        //         message: appData.message,
-        //         references: appData.references
-        //     })
-        // })
-        // .then(res=>{
-        //     res.json()
-        // })
-        // .then(data => {
-        //     console.log(data)
-        // })
     }
 
     return(
-        <>
-        <form onSubmit={submitApplication}>
-            <input type='text' name='name' placeholder='Enter Name' value={appData.name} onChange={handleAppChange} />
-            <input type='email' name='email' placeholder='Enter Email' value={appData.email} onChange={handleAppChange} />
-            <textarea name='message' placeholder='Reason for Applying' value={appData.message} onChange={handleAppChange} />
-            <input  type='text' name='references' placeholder='References' value={appData.references} onChange={handleAppChange} />
-            <br></br>
-            <button type='submit' >Submit</button>
-        </form>
-        </>
+        <div className='app-component'>
+        <div className='form-header'>
+            <h1>Apply to be an organizer </h1>
+        </div>
+        <br></br>
+        <div className='app-form'>
+            <form onSubmit={submitApplication}>
+                <input type='text' name='name' placeholder='Enter Name' value={appData.name} onChange={handleAppChange} />
+                <br></br>
+                <input type='email' name='email' placeholder='Enter Email' value={appData.email} onChange={handleAppChange} />
+                <br></br>
+                <textarea name='message' placeholder='Reason for Applying' value={appData.message} onChange={handleAppChange} />
+                <br></br>
+                <input  type='text' name='references' placeholder='References' value={appData.references} onChange={handleAppChange} />
+                <br></br>
+                <button type='submit' >Submit</button>
+            </form>
+        </div>
+        </div>
     )
 
 }

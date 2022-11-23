@@ -15,7 +15,7 @@ function UnAuthenticatedApp ({setCurrentUser, setCurrentOrganizer, currentUser, 
                 <Route path='/' element={<NavBar />}>
                     <Route index element={<UnAuthenticatedHome/>} />
                     <Route path='upcoming' element={<UnAuthCalendarComponent currentUser={currentUser} currentOrganizer={currentOrganizer} />} />
-                    <Route path='contactus' element={<ContactPage />} />
+                    <Route path='contactus' element={<ContactPage currentUser={currentUser} />} />
                     <Route path='login' element={<UserLogin setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
                     <Route path='/signup' element={<Signup setCurrentUser={setCurrentUser} />} />
                     <Route path='organizer-login' element={<OrganizerLogin setCurrentOrganizer={setCurrentOrganizer} />} />

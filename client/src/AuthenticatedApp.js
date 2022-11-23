@@ -31,7 +31,7 @@ function AuthenticatedApp ({currentUser, setCurrentUser, setCurrentOrganizer, cu
                 <Route path='all-events' element={<AllTownEventsEdit currentOrganizer={currentOrganizer} />} >
                     <Route path=':event_id' element={<EditEventPage currentOrganizer={currentOrganizer} />} />
                 </Route>
-                <Route path='contactus' element={<ContactPage />} />
+                <Route path='contactus' element={<ContactPage currentUser={currentUser} />} />
                 <Route path="login" element={<UserLogin/>} />
                 <Route path="organizer-login" element={<OrganizerLogin />} />
                 <Route path="organize-event" element={<OrganizeEvent />} />
