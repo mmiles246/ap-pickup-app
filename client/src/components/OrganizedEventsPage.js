@@ -83,10 +83,8 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
     return (
         <div className='organized-events-page'>
-            <br></br>
             <h1>Your Upcoming events</h1>
-            <br></br>
-            <label htmlFor='filter'>Filter:</label>
+            {/* <label htmlFor='filter'>Filter:</label>
 
             <select
             type='select'
@@ -96,7 +94,7 @@ function OrganizedEventsPage ({currentOrganizer}) {
                 <option value='start_time'>Date</option>
                 <option value='type_of'>Event Type</option>
                 <option value='rsvps'>RSVPs</option>
-            </select>
+            </select> */}
             <div className='each-event-card'>
                 {eventPageInfo.map((eachEvent)=>{
                     return(

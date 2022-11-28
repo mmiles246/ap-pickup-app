@@ -58,8 +58,8 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         setEventToEdit(e.target)
     }
 
-    let myEventsArray=[];
-    let signupsArray=[];
+    // let myEventsArray=[];
+    // let signupsArray=[];
 
 
 
@@ -98,19 +98,20 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         current_user=currentOrganizer
     }
     // let signupsArray=[];
-    if (current_user.is_user) {
-    current_user.signups.forEach((signup)=> {
-        signupsArray.push(signup.town_event_id)
-    }) 
-}
+//     if (current_user.is_user) {
+//     current_user.signups.forEach((signup)=> {
+//         signupsArray.push(signup.town_event_id)
+//     }) 
+// }
 
 function filterEvents (state, fetchedEvents) {
                         
     if(state === 'all events') {
         return fetchedEvents
     } else if(state === 'social') {
-        console.log(fetchedEvents.filter(event => event.type_of==='social'))
         return fetchedEvents.filter(event => event.type_of==='social')
+    } else if(state==='shopping') {
+        return fetchedEvents.filter(event=>event.type_of==='shopping')
     } else if(state === 'arts') {
         return fetchedEvents.filter(event => event.type_of==='arts')
     } else if(state === 'sports') {
@@ -142,6 +143,7 @@ function filterEvents (state, fetchedEvents) {
                             <select type='select' name='event-filter' onChange={(e)=>{setEventsFilter(e.target.value)}}>
                                 <option value='all events'>All Events</option>
                                 <option value='social'>Social</option>
+                                <option value='shopping'>Shopping</option>
                                 <option value='arts'>Arts</option>
                                 <option value='sports'>Sports</option>
                                 <option value='volunteer'>Volunteer</option>
@@ -201,6 +203,8 @@ function filterEvents (state, fetchedEvents) {
                                 backgroundColor='#04A777'
                             } else if (e.type_of==='social') {
                                 backgroundColor='#23395B'
+                            } else if (e.type_of==='shopping') {
+                                backgroundColor='#A30015'
                             } else if (e.type_of==='sports') {
                                 backgroundColor='red'
                             } else if (e.type_of === 'volunteer') {

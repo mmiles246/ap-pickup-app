@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import {Card} from 'react-bootstrap'
 
@@ -11,6 +12,8 @@ function OrganizeEvent () {
         location: ""
 
     })
+
+    let navigate=useNavigate()
 
     function handleInputChange (e) {
         const {name, value}=e.target;
@@ -50,6 +53,7 @@ function OrganizeEvent () {
             }
         })
         alert("Your event has been posted!")
+        navigate('../upcoming')
     }
 
     return(
@@ -101,6 +105,7 @@ function OrganizeEvent () {
                             <option value='sports'>Sports</option>
                             <option value='arts'>Arts</option>
                             <option value='social'>Social</option>
+                            <option value='shopping'>Shopping</option>
                             <option value='drink and dine'>Drink and Dine</option>
                             </select>
 
@@ -120,14 +125,6 @@ function OrganizeEvent () {
                     
                     <br></br>
                     <br></br>
-
-                    {/* <textarea
-                    type='text'
-                    placeholder='Sponsors'
-                    value={newEvent.sponsors}
-                    name='sponsors'
-                    onChange={handleInputChange}
-                    ></textarea> */}
                     </div>
                     <div className='submit-event-bttn'>
                         <button type='submit'>Submit</button>

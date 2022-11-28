@@ -324,9 +324,7 @@
 
 
 
-.event-card {
-  margin: 0;
-}
+
 
 .info-container {
   width: 380px;
@@ -371,7 +369,7 @@
 }
 
 .organized-events-page {
-  display: inline-block;
+  /* display: inline-block; */
   align-items: center;
   align-content: center;
   text-align: center;
@@ -382,14 +380,27 @@
 }
 
 .each-event-card {
-  display: inline-flex;
+  /* display: inline-flex;
   align-items: center;
   margin: 5rem;
-  min-width: 0;
+  min-width: 0; */
   /* justify-content: space-around;
   justify-items: auto; */
   /* overflow-x: hidden; */
+  align-items: center;
+  align-content: center;
+  display: block;
+  float: left;
+  padding: 5px;
 
+}
+
+.event-card {
+  align-items: center;
+  align-content: center;
+  display: block;
+  float: left;
+  padding: 5px;
 }
 
 .all-event-card {
@@ -403,23 +414,6 @@
 .comment-section h1 {
   text-decoration: underline;
 }
-
-/* .comment-blurb h4 {
-  width: auto;
-  height: auto;
-  border-radius: 25px;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 17px #333;
-  
-}
-.comment-blurb h6 {
-  display: flexbox;
-  float: unset;
-  float: none;
-
-} */
-
-
 
 /* ////////////////////////////////////////////////////////*/
 /* UserLogin*/
