@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import EachEventCard from './EachEventCard'
 import {Modal} from 'react-bootstrap'
 import EditEventModal from './EditEventModal'
@@ -14,9 +14,12 @@ function OrganizedEventsPage ({currentOrganizer}) {
 
     let filteredArray = []
     
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    // const handleClose = () => setShow(false);
+
+    let location = useLocation()
+    console.log(location.state)
 
     useEffect(()=>{
         fetch('/town_event_page')
@@ -98,7 +101,7 @@ function OrganizedEventsPage ({currentOrganizer}) {
             <div className='each-event-card'>
                 {eventPageInfo.map((eachEvent)=>{
                     return(
-                    <EachEventCard key={eachEvent.id} eachEvent={eachEvent} />
+                    <EachEventCard key={eachEvent.id} eachEvent={eachEvent} show1={location.state} />
                     )
                 })}
                 

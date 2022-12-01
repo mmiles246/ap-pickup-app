@@ -4,7 +4,7 @@ import {Modal, Button} from 'react-bootstrap'
 import EditEventModal from './EditEventModal';
 import {Card} from 'react-bootstrap'
 
-function EachEventCard ({eachEvent}) {
+function EachEventCard ({eachEvent, show1}) {
     const [eventToEdit, setEventToEdit]=useState(eachEvent)
     
     const [show, setShow] = useState(false);
@@ -22,7 +22,6 @@ function EachEventCard ({eachEvent}) {
 
 
     function onClick (e) {
-        console.log(e)
         setShow(true)
         navigate(`/my-organized-events/${eachEvent.id}`, {state: {eachEvent}})
     }
@@ -42,7 +41,7 @@ function EachEventCard ({eachEvent}) {
                 </Card.Body>
             </Card>
 
-        {show ? (<EditEventModal eventToEdit={eventToEdit} show={show} setShow={setShow} handleClose={handleClose} />)
+        {show||show1 ? (<EditEventModal eventToEdit={eventToEdit} show={show} show1={show1}  handleClose={handleClose} />)
             :
             <></>}
 

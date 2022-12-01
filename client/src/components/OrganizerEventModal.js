@@ -6,7 +6,7 @@ import EditEventModal from './EditEventModal'
 
 function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganizer}) {
     const [eventToEdit, setEventToEdit] = useState(selectedEvent)
-    const [show1, setShow1] = useState(true)
+    const [show1, setShow1] = useState(false)
     const [whosEvent, setWhosEvent]=useState(() => {
         if (selectedEvent.organizer.id === currentOrganizer.id) {
             return true;
@@ -24,11 +24,10 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
       }})
     }
 
-    console.log(selectedEvent)
 
     function editClick (e) {
         setShow1(true)
-        {selectedEvent.organizer.id === currentOrganizer.id ? navigate(`/my-organized-events`)
+        {selectedEvent.organizer.id === currentOrganizer.id ? navigate(`/my-organized-events/${selectedEvent.id}`, {state: {show: show1}})
         :
         navigate(`/all-events/${selectedEvent.id}`, {state: {show: show1}})
         }

@@ -67,7 +67,6 @@ function AuthCalendarComponent ({currentUser, currentOrganizer}) {
         fetch('/town_events')
         .then(res=>res.json())
         .then((res)=> {
-            console.log(res)
             setStateToRerender(false)
             setEventInfoToPass(res)
             setFetchedEvents(res.map(eachEvent=> {

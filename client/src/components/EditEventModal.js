@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import {Modal, Button} from 'react-bootstrap'
 import DatePicker from "react-datepicker";
 
-function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRerender}) {
-    // console.log(eventToEdit)
+function EditEventModal ({show, show1, setShow, handleClose, eventToEdit, setStateToRerender}) {
+    console.log(show, show1)
     const [editEventShow, setEditEventShow]=useState(false)
     const [updatedEvent, setUpdatedEvent]=useState({
         name: eventToEdit.name,
@@ -76,10 +76,10 @@ function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRer
 
     return (
         <div>
-            <Modal show={show} onHide={handleClose}  >
+            <Modal show={show||show1} onHide={handleClose}  >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {show ? (eventToEdit.name)
+                        {show||show1 ? (eventToEdit.name)
                         :
                         (<></>)}
                     </Modal.Title>
@@ -118,6 +118,7 @@ function EditEventModal ({show, setShow, handleClose, eventToEdit, setStateToRer
                     >
                         <option value='volunteer'>Volunteer</option>
                         <option value='sports'>Sports</option>
+                        <option value='shopping'>Shopping</option>
                         <option value='arts'>Arts</option>
                         <option value='social'>Social</option>
                         <option value='drink and dine'>Drink and Dine</option>
