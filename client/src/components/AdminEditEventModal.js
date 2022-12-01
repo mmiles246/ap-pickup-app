@@ -138,6 +138,7 @@ function AdminEditEventModal ({eventToEdit, show, setShow, handleClose}) {
                     >
                         <option value='volunteer'>Volunteer</option>
                         <option value='sports'>Sports</option>
+                        <option value='shopping'>Shopping</option>
                         <option value='arts'>Arts</option>
                         <option value='social'>Social</option>
                         <option value='drink and dine'>Drink and Dine</option>

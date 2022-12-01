@@ -8,8 +8,8 @@ function AllTownEventsEdit ({currentOrganizer}) {
     const [dummyState, setDummyState]= useState(null)
     // const editEvent = useLocation()
 
-
-    // console.log(editEvent.state)
+    let location = useLocation()
+    console.log(location.state)
 
     useEffect(()=>{
         fetch('/town_events')
@@ -21,7 +21,7 @@ function AllTownEventsEdit ({currentOrganizer}) {
     }, [])
    
     function eventsMapper (eachEvent) {
-        return <AllEventCards key={eachEvent.id} eachEvent={eachEvent} show={show} setShow={setShow} />
+        return <AllEventCards key={eachEvent.id} eachEvent={eachEvent} show={location.state} setShow={setShow} />
     }
 
     return (
@@ -29,7 +29,7 @@ function AllTownEventsEdit ({currentOrganizer}) {
             <div className='all-event-card'>
                 <h1>All Upcoming Events</h1>
                 {/* {allEvents.map(eventsMapper)} */}
-                {allEvents.map((e) => {return <AllEventCards key={e.id} event={e} show={show} setShow={setShow}/>})}
+                {allEvents.map((e) => {return <AllEventCards key={e.id} event={e} show={location.state} setShow={setShow}/>})}
             </div>  
         </div>)
 

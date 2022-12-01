@@ -6,7 +6,7 @@ import EditEventModal from './EditEventModal'
 
 function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganizer}) {
     const [eventToEdit, setEventToEdit] = useState(selectedEvent)
-    const [show1, setShow1] = useState(false)
+    const [show1, setShow1] = useState(true)
     const [whosEvent, setWhosEvent]=useState(() => {
         if (selectedEvent.organizer.id === currentOrganizer.id) {
             return true;
@@ -24,10 +24,15 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
       }})
     }
 
+    console.log(selectedEvent)
+
     function editClick (e) {
-        // setShow1(true)
-        // setEventToEdit(selectedEvent)
-        navigate(`/all-events/${selectedEvent.id}`, {state: ''})
+        setShow1(true)
+        {selectedEvent.organizer.id === currentOrganizer.id ? navigate(`/my-organized-events`)
+        :
+        navigate(`/all-events/${selectedEvent.id}`, {state: {show: show1}})
+        }
+        
     }
 
 
@@ -43,7 +48,7 @@ function OrganizerEventModal ({show, handleClose, selectedEvent, currentOrganize
             modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
         } else if (whosEvent) {
             modalBttn=<Button variant='primary' onClick={editClick}>Edit Event</Button>
-        } else {modalBttn=<Button>Return to Calendar</Button>}
+        } else {modalBttn=<Button onClick={handleClose} >Return to Calendar</Button>}
     
     return (
         <div>
