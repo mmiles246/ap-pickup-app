@@ -43,6 +43,8 @@ Rails.application.routes.draw do
 
   post '/organizer-event-comments', to: 'organizer_comments#create'
 
+  post '/organizer-avatar', to: 'organizer#avatar_upload'
+
   patch '/organize_event/:event_id', to: 'town_events#update'
 
   delete '/logout', to: 'sessions#destroy'

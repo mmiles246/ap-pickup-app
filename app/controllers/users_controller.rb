@@ -23,6 +23,11 @@ skip_before_action :confirm_authentication, only: [:create]
         end
     end
     
+    def avatar_upload
+        current_user=User.find_by(session: [:user_id])
+        current_user.update(user_params)
+        render json: current_user
+    end
 
     private
 

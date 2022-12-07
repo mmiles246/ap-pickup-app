@@ -18,7 +18,8 @@ skip_before_action :confirm_authentication, only: [:create, :organizer_create, :
             if organizer&.authenticate(params[:password])
                 session[:organizer_id] = organizer.id
                 # profile_img=rails_blob_path(organizer.profile_img)
-                render json: organizer, status: :ok
+                # render json: organizer, status: :ok
+                render json: OrganizerSerializer.new(organizer).serializable_hash[:data][:attributes]
             else
                 render json: {error: "Invalid email or password."}, status: :unauthorized
             end
