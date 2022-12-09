@@ -1,6 +1,7 @@
-class TownEventSerializer < ActiveModel::Serializer
+class TownEventSerializer 
+  include JSONAPI::Serializer
   attributes :id, :name, :type_of, :start_time, :end_time, :location, :event_description, :sponsors, :signups, :user_comments, :organizer_comments, :signups_user_ids, :organizer_id
-  has_one :organizer
+  has_one :organizer, serializer: OrganizerSerializer
   has_many :signups
   has_many :user_comments
 

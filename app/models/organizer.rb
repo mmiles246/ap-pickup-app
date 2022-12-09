@@ -1,6 +1,7 @@
 class Organizer < ApplicationRecord
+    include ActiveModel::Serializers::JSON
     has_secure_password
-    has_one_attached :profile_img
+    has_one_attached :avatar
     
     has_many :town_events
 
@@ -10,6 +11,14 @@ class Organizer < ApplicationRecord
     validates :email, uniqueness: true
     validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
     validates :email, :first_name, :last_name, :about, presence: true
+
+    def is_organizer
+        true
+      end
+
+      def avatar_url
+        Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
+      end
 
 end
 
